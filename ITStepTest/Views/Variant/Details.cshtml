@@ -1,0 +1,36 @@
+﻿@model ITStepTest.Models.Variant
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Variant</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.text)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.text)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.true)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.true)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.question)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.question)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

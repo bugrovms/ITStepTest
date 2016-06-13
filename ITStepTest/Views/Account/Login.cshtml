@@ -1,0 +1,335 @@
+﻿@model ITStepTest.Models.LoginModel
+
+@{
+    ViewBag.Title = "Выполнить вход";
+}
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">IT Step Test</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="content">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+                    <li class="ancor"><a href="#about">О нас</a></li>
+                    <li class="ancor"><a href="#services">Сервисы</a></li>
+                    <li class="ancor"><a href="#contacts">Контакты</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CRUD test <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Тесты", "Index", "Test")</li>
+                            <li>@Html.ActionLink("Вопросы", "Index", "Question")</li>
+                            <li>@Html.ActionLink("Варианты", "Index", "Variant")</li>
+                            <li>@Html.ActionLink("Сообщения", "Index", "Messages")</li>
+                            <li>@Html.ActionLink("Предметы", "Index", "Subject")</li>
+                            <li>@Html.ActionLink("Комментарии", "Index", "Comment")</li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Another action</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="no-padding-content relative">
+
+    <section id="main-section-login">
+        @using (Html.BeginForm(new {ReturnUrl = ViewBag.ReturnUrl}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <legend>Форма входа</legend>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, new {@class = "form-control"})
+                    <div class="error">
+                        @Html.ValidationMessageFor(m => m.Email)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
+                    <div class="error">
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </div>
+                </div>
+                <div class="form-group checkbox-element">
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+                </div>
+                <input type="submit" class="btn btn-default" value="Выполнить вход"/>
+                <br /><br />
+                <p>
+                    @Html.ActionLink("Зарегистрируйтесь", "Register"), если у вас нет учетной записи.
+                </p>
+            </fieldset>
+            
+        }
+    </section>
+
+    <img id="base-images" src="/Content/Images/future-proof1.jpg" />
+</div>
+
+<section class="main-section-content">
+    <div class="row row-gray ">
+        <div class="content">
+            <div class="col-md-6">
+                <h3 id="about">
+                    <b>О нас</b>
+                </h3>
+                <hr />
+                <div class="main-text">
+                    <p>
+                        <b>IT Step Test</b> – это on-line сервис тестирования знаний созданная для очного
+                        итогового контроля качества знаний обучаемых в учебных организациях со
+                        сложной распределённой структурой.
+                    </p>
+                    <p>
+                        <b>Главной целью</b> деятельности является использование и развитие технологий
+                        компьютерного тестирования знаний в учебном процессе.
+                    </p>
+                    <p>
+                        Сервис разработан в рамках дипломного проекта <b>Бугровым Максимом</b>, студентом
+                        IT Step.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 right-content">
+                <br />
+                <img class="main-image" src="/Content/Images/ipad.png" alt="ipad" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="content">
+            <div class="col-md-6">
+                <br />
+                <img class="main-image" src="/Content/Images/Qualification.jpg" alt="tests" />
+            </div>
+            <div class="col-md-6 right-content">
+                <h3 id="services">
+                    <b>Сервисы</b>
+                </h3>
+                <hr />
+                <div class="main-text">
+                    <p>
+                        <b>IT Step Test</b> - являть собой систему тестирования знаний студентов с разных дисциплин.
+                    </p>
+                    <p>
+                        Сервис предоставляет ряд функциональных возможностей по управлению тестированием, проверки результатов тестирования, а также интерактивному общению пользователей сайта по средствам
+                        внутренней системы сообщений и системы комминтариев для тестов в целом.
+                    </p>
+                    <p>
+                        Сервис розделяет пользователей на три группы: студент, преподаватель, администратор
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-gray">
+        <div class="content">
+            <div class="col-md-4">
+                <!-- START -->
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="front">
+                            <!-- front content -->
+                            <div class="main-service-icon">
+                                <img src="/Content/Images/student.png" alt="student icon" />
+                            </div>
+                            <h3 class="main-services-title">
+                                Студент
+                            </h3>
+                        </div>
+                        <div class="back">
+                            <!-- back content -->
+                            <ul class="main-service-content">
+                                <b>Пользователь «Студент» сможет воспользоваться следующим функционалом:</b>
+                                <li>пройти тест;</li>
+                                <li>просмотреть свои результаты прохождений тестов;</li>
+                                <li>отправить внутреннее сообщение или оставить комментарий;</li>
+                                <li>просмотреть или отредактировать свой профиль.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- END -->
+            </div>
+            <div class="col-md-4">
+                <!-- START -->
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="front">
+                            <!-- front content -->
+                            <div class="main-service-icon">
+                                <img src="/Content/Images/teacher.png" alt="teacher icon" />
+                            </div>
+                            <h3 class="main-services-title">
+                                Преподаватель
+                            </h3>
+                        </div>
+                        <div class="back">
+                            <!-- back content -->
+                            <ul class="main-service-content">
+                                <b>Пользователь «Преподаватель» сможет:</b>
+                                <br />
+                                <li>добавление дисциплины;</li>
+                                <li>добавление/редактирования/удаление тестов и вопросов к ним;</li>
+                                <li>отправить внутреннее сообщение или оставить комментарий;</li>
+                                <li>просмотреть или отредактировать свой профиль;</li>
+                                <li>просмотр результатов прохождения тестов.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- END -->
+            </div>
+            <div class="col-md-4">
+                <!-- START -->
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="front">
+                            <!-- front content -->
+                            <div class="main-service-icon">
+                                <img src="/Content/Images/administrator.png" alt="administrator icon" />
+                            </div>
+                            <h3 class="main-services-title">
+                                Администратор
+                            </h3>
+                        </div>
+                        <div class="back">
+                            <!-- back content -->
+                            <ul class="main-service-content">
+                                <b>Пользователь «Администратор» сможет воспользоваться следующим функционалом:</b>
+                                <li>активация пользователя;</li>
+                                <li>добавление/редактирования/удаление пользователей;</li>
+                                <li>добавление/редактирования/удаление тестов, вопросов, комминтариев;</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- END -->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="content">
+            <div class="col-md-6">
+                <h3 id="contacts">
+                    <b>Контакты</b>
+                </h3>
+                <hr />
+                <img src="/Content/Images/logo-it-step.jpg" alt="logo IT Step" class="contacts-logo-info" />
+                <p>
+                    <b>Компьютерная Академия ШАГ</b>
+                </p>
+                <p>
+                    36020, г. Полтава,
+                    ул. Парижской Коммуны 36A, офис 203
+                </p>
+                <p>
+                    Режим работы:
+                    пн.-пт.: 9:00-18:00;
+                    сб, вс.: выходной
+                </p>
+                <br style="clear: both;" />
+                <img src="/Content/Images/max.jpg" alt="Maxim Bugrov" class="contacts-logo-info" />
+                <p>
+                    <b>Разработчик:</b>
+                </p>
+                <p>
+                    Бугров Максим
+                </p>
+                <p>
+                    <a href="http://vk.com/maks.karateka" class="icon-small vk"></a>
+                    <a href="http://vk.com/maks.karateka" class="icon-small facebook"></a>
+                    <a href="http://vk.com/maks.karateka" class="icon-small gplus"></a>
+                    <a href="http://vk.com/maks.karateka" class="icon-small github"></a>
+                </p>
+            </div>
+            <div class="col-md-6 right-content">
+                <br />
+                <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
+                <div style='overflow: hidden; height: 400px; width: 520px;'>
+                    <div id='gmap_canvas' style='height: 400px; width: 520px;'></div>
+                    <style>
+                        #gmap_canvas img {
+                            max-width: none !important;
+                            background: none !important;
+                        }
+                    </style>
+                </div> <a href='http://maps-generator.com/ru'>Maps-Generator</a>
+                <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=a394c4795094e04c709d71c340d269ec77b7a171'></script>
+                <script type='text/javascript'>
+                    function init_map() {
+                        var myOptions = { zoom: 15, center: new google.maps.LatLng(49.58766099199458, 34.56079384260556), mapTypeId: google.maps.MapTypeId.ROADMAP };
+                        map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+                        marker = new google.maps.Marker({ map: map, position: new google.maps.LatLng(49.58766099199458, 34.56079384260556) });
+                        infowindow = new google.maps.InfoWindow({ content: '<strong>Компьютерная Академия ШАГ</strong><br>ул. Парижской Коммуны 36A<br> Полтава<br>' });
+                        google.maps.event.addListener(marker, 'click', function () { infowindow.open(map, marker); });
+                        infowindow.open(map, marker);
+                    }
+
+                    google.maps.event.addDomListener(window, 'load', init_map);
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="no-padding-content relative">
+            <div class="contacts-global-social">
+                <div class="contacts-global-social-title">Присоединяйся к нам:</div>
+                <div class="contacts-global-social-button">
+                    <a href="#" class="btn btn-lg btn-default">VKONTAKTE</a>
+                    <a href="#" class="btn btn-lg btn-default">TWITTER</a>
+                    <a href="#" class="btn btn-lg btn-default">FACEBOOK</a>
+                </div>
+            </div>
+            <img id="base-images" src="/Content/Images/future-proof-simple.jpg" />
+        </div>
+    </div>
+<div class="row">
+    <div class="content">
+        <div class="col-md-12">
+            <br/><br/>
+            <div class="ancor footer-menu-link">
+                @Html.ActionLink("Главная", "Index", "Home") &nbsp;&nbsp;-&nbsp;&nbsp;
+            </div>
+            <div class="ancor footer-menu-link">
+                <a href="#about">О нас</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+            </div>
+            <div class="ancor footer-menu-link">
+                <a href="#services">Сервисы</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+            </div>
+            <div class="ancor footer-menu-link">
+                <a href="#contacts">Контакты</a>
+            </div>
+            <br/><br/>
+            Copyright © It Step 2015. All Rights Reserved
+        </div>
+    </div>
+</div>
+<div id="scrollup">
+    <img alt="Прокрутить вверх" src="/Images/to_top.png">
+</div>
+</section>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

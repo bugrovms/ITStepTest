@@ -1,0 +1,134 @@
+﻿@model ITStepTest.Models.RegisterModel
+@{
+    ViewBag.Title = "Регистрация";
+}
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">IT Step Test</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="content">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+                    <li class="ancor"><a href="#about">О нас</a></li>
+                    <li class="ancor"><a href="#services">Сервисы</a></li>
+                    <li class="ancor"><a href="#contacts">Контакты</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CRUD test <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Тесты", "Index", "Test")</li>
+                            <li>@Html.ActionLink("Вопросы", "Index", "Question")</li>
+                            <li>@Html.ActionLink("Варианты", "Index", "Variant")</li>
+                            <li>@Html.ActionLink("Сообщения", "Index", "Messages")</li>
+                            <li>@Html.ActionLink("Предметы", "Index", "Subject")</li>
+                            <li>@Html.ActionLink("Комментарии", "Index", "Comment")</li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Another action</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<section class="main-section-content">
+    <div class="row">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <h3>
+                    <b>Форма регистрации</b>
+                </h3>
+                <hr/>
+                <div>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary()
+                        <fieldset>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email)
+                                @Html.TextBoxFor(m => m.Email, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Password)
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ConfirmPassword)
+                                @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.FirstName)
+                                @Html.TextBoxFor(m => m.FirstName, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.LastName)
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Date)
+                                @Html.TextBoxFor(m => m.Date, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Phone)
+                                @Html.TextBoxFor(m => m.Phone, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.GroupId)
+                                @Html.TextBoxFor(m => m.GroupId, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Role)
+                                @Html.TextBoxFor(m => m.Role, new {@class = "form-control"})
+                            </div>
+                            <input type="submit" class="btn btn-default" value="Регистрация" />
+                        </fieldset>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <div class="ancor footer-menu-link">
+                    @Html.ActionLink("Главная", "Index", "Home") &nbsp;&nbsp;-&nbsp;&nbsp;
+                </div>
+                <div class="ancor footer-menu-link">
+                    <a href="#about">О нас</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+                </div>
+                <div class="ancor footer-menu-link">
+                    <a href="#services">Сервисы</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+                </div>
+                <div class="ancor footer-menu-link">
+                    <a href="#contacts">Контакты</a>
+                </div>
+                <br /><br />
+                Copyright © It Step 2015. All Rights Reserved
+            </div>
+        </div>
+    </div>
+    <div id="scrollup">
+        <img alt="Прокрутить вверх" src="/Images/to_top.png">
+    </div>
+</section>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
