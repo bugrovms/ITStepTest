@@ -18,6 +18,12 @@ namespace ITStepTest.Controllers
 
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = db.Users.FirstOrDefault(x => x.Email == userName);
+                ViewBag.User = user;
+            }       
             return View(db.Groups.ToList());
         }
 

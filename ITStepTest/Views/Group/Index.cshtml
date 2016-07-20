@@ -4,30 +4,75 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@Html.Partial("_MainMenu")
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
+<section class="main-section-content">
+    <div class="row ">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <h3>
+                    <b>Учебные группы</b>
+                </h3>
+                <hr />
+                <div>
+                    <p>
+                        @Html.ActionLink("Create New", "Create")
+                    </p>
+                    <ul class="none-list-marker base-items-list">
+                        @foreach (var item in Model)
+                        {
+                              <li>
+                                <div class="show-marker"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></div>
+                                <div class="main-content-item-list">
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </div>
+                                <div class="menu-block-item-list">
+                                    <div class="dropdown">
+                                        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+                                        </button>
+                                        <ul class="dropdown-menu icon-menu" aria-labelledby="dLabel">
+                                            <li>
+                                                <span class="glyphicon glyphicon-pencil  edit-element" aria-hidden="true"></span>
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                                            </li>
+                                            <li>
+                                                <span class="glyphicon glyphicon-info-sign info-element" aria-hidden="true"></span>
+                                                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                                            </li>
+                                            <li>
+                                                <span class="glyphicon glyphicon-remove remove-element" aria-hidden="true"></span>
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>                          
+                        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
 
-</table>
+                    </ul>                    
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="row">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <div class="ancor footer-menu-link">
+                    @Html.ActionLink("Главная", "Index", "Home") &nbsp;&nbsp;-&nbsp;&nbsp;
+                </div>                
+                <br /><br />
+                Copyright © It Step 2015. All Rights Reserved
+            </div>
+        </div>
+    </div>
+    <div id="scrollup">
+        <img alt="Прокрутить вверх" src="/Images/to_top.png">
+    </div>
+</section>
+
+
+

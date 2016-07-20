@@ -8,4 +8,14 @@
         }
 
     });
+
+    $('#register-role-select').on('change', function () {
+        var selected = $(this).find("option:selected").val();
+        if (selected == 1 || selected == 2) {
+            $('#register-group-select').hide();
+        } else {
+            $('#register-group-select').show();
+        }
+    });
+
 });
