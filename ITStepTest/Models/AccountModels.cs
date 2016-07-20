@@ -19,7 +19,7 @@ namespace ITStepTest.Models
         public DbSet<User> Users { get; set; }
     }
 
-    [Table("Users")]
+   /* [Table("Users")]
     public class User
     {
         [Key]
@@ -44,7 +44,7 @@ namespace ITStepTest.Models
         public RolesType Role { get; set; }
         public int? GroupId { get; set; }
         public bool Active { get; set; }
-    }
+    }*/
 
     public class RegisterExternalLoginModel
     {

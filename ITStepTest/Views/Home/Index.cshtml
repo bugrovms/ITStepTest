@@ -23,8 +23,9 @@
                     <li class="ancor"><a href="#about">О нас</a></li>
                     <li class="ancor"><a href="#services">Сервисы</a></li>
                     <li class="ancor"><a href="#contacts">Контакты</a></li>
+                    @if (User.Identity.IsAuthenticated && @ViewBag.User.Role == 2) { 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CRUD test <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Управление <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Тесты", "Index", "Test")</li>
                             <li>@Html.ActionLink("Вопросы", "Index", "Question")</li>
@@ -36,6 +37,8 @@
                             <li><a href="#">Another action</a></li>
                         </ul>
                     </li>
+                    }                
+                    
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

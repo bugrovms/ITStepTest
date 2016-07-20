@@ -3,15 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ITStepTest.Models;
+using System.Web.Security;
 
 namespace ITStepTest.Controllers
 {
     public class HomeController : Controller
     {
+
+        private StoreDBEntities db = new StoreDBEntities();
+
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-
+            if (User.Identity.IsAuthenticated) {
+                var userName = User.Identity.Name;
+                var user = db.Users.FirstOrDefault(x => x.Email == userName);
+                ViewBag.User = user;
+            }            
             return View();
         }
 
@@ -27,6 +35,12 @@ namespace ITStepTest.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
         }
     }
 }
