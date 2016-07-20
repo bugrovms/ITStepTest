@@ -65,6 +65,7 @@ namespace ITStepTest.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Groups = db.Groups.ToList();
             return View();
         }
 

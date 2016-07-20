@@ -19,6 +19,29 @@
         Text = "Администратор",
         Value = "2"
     });
+
+    List<SelectListItem> groups = new List<SelectListItem>();
+    int i = 0;
+    foreach(var group in ViewBag.Groups){
+        if (i < 1)
+        {
+            groups.Add(new SelectListItem
+            {
+                Text = group.Name,
+                Value = group.Id.ToString(),
+                Selected = true
+            });
+        }
+        else {
+            groups.Add(new SelectListItem
+            {
+                Text = group.Name,
+                Value = group.Id.ToString()
+            });
+        }
+        
+        i++;
+    }
 }
 
 @Html.Partial("_MainMenu")
@@ -70,7 +93,7 @@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.GroupId)*
-                                @Html.TextBoxFor(m => m.GroupId, new {@class = "form-control"})
+                                @Html.DropDownListFor(m => m.GroupId, groups, new { @class = "form-control" })
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Role)
