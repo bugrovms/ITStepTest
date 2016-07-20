@@ -13,6 +13,6 @@ namespace ITStepTest.Enums
         [Display(Name = "Преподаватель")]
         Teacher = 1,
         [Display(Name = "Администратор")]
-        Administrator = 0,
+        Administrator = 2,
     }
 }

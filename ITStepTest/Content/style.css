@@ -309,3 +309,23 @@
     position: relative;
     top: 5px;
 }
+
+.register-form-block {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.option-user-icon {
+    float: left;
+    width: 50%;
+    margin-right: 20px;
+}
+
+.manage-form-block {
+     width: 900px;
+    margin: 0 auto;
+}
+
+.none-list-marker {
+    list-style-type: none;
+}

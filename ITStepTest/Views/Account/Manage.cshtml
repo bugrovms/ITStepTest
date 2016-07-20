@@ -1,31 +1,95 @@
 ﻿@model ITStepTest.Models.LocalPasswordModel
 @{
     ViewBag.Title = "Управление учетной записью";
+    var userRole = ViewBag.User.Role.ToString() ;
+    string role = "";
+    
+    if (userRole == "0") {
+        role = "Студент";
+    } else if (userRole == "1") {
+        role = "Преподаватель";
+    }
+    else if (userRole == "2")
+    {
+         role = "Администратор";
+    }
+   
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-</hgroup>
 
-<p class="message-success">@ViewBag.StatusMessage</p>
 
-<p>Вы вошли как <strong>@User.Identity.Name</strong>.</p>
-
-@if (ViewBag.HasLocalPassword)
-{
-    @Html.Partial("_ChangePasswordPartial")
-}
-else
-{ 
-    @Html.Partial("_SetPasswordPartial")
-}
-
-<section id="externalLogins">
-    @Html.Action("RemoveExternalLogins")
-
-    <h3>Добавить внешнюю учетную запись</h3>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+@Html.Partial("_MainMenu")
+<section class="main-section-content">
+    <div class="row manage-form-block">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <h3>
+                    <b>@ViewBag.Title</b>
+                </h3>
+                <hr />
+                <div>
+                    <img src="~/Content/Images/user_icon.png" class="option-user-icon"/>
+                    <h4>@ViewBag.User.FirstName @ViewBag.User.LastName</h4>
+                    <p>(@role) </p>
+                    <p>Группа: @ViewBag.User.GroupId</p>
+                    <p>E-mail: @ViewBag.User.Email</p>
+                    <p>Телефон: @ViewBag.User.Phone</p>
+                    <div id="btn-change-password" class="btn btn-link">Сменить пароль</div>
+                    <br style="clear: both;"/>
+                    <div id="change-password-block">
+                        @if (ViewBag.HasLocalPassword)
+                        {
+                            @Html.Partial("_ChangePasswordPartial")
+                        }
+                        else
+                        {
+                            @Html.Partial("_SetPasswordPartial")
+                        }
+                    </div>        
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="no-padding-content relative">
+            <div class="contacts-global-social">
+                <div class="contacts-global-social-title">Присоединяйся к нам:</div>
+                <div class="contacts-global-social-button">
+                    <a href="#" class="btn btn-lg btn-default">VKONTAKTE</a>
+                    <a href="#" class="btn btn-lg btn-default">TWITTER</a>
+                    <a href="#" class="btn btn-lg btn-default">FACEBOOK</a>
+                </div>
+            </div>
+            <img id="base-images" src="/Content/Images/future-proof-simple.jpg" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <div class="ancor footer-menu-link">
+                    @Html.ActionLink("Главная", "Index", "Home") &nbsp;&nbsp;-&nbsp;&nbsp;
+                </div>
+                <div class="ancor footer-menu-link">
+                    <a href="#about">О нас</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+                </div>
+                <div class="ancor footer-menu-link">
+                    <a href="#services">Сервисы</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+                </div>
+                <div class="ancor footer-menu-link">
+                    <a href="#contacts">Контакты</a>
+                </div>
+                <br /><br />
+                Copyright © It Step 2015. All Rights Reserved
+            </div>
+        </div>
+    </div>
+    <div id="scrollup">
+        <img alt="Прокрутить вверх" src="/Images/to_top.png">
+    </div>
 </section>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -259,10 +259,12 @@
     <Content Include="Content\Images\icon-social.png" />
     <Content Include="Content\Images\ipad.png" />
     <Content Include="Content\Images\logo-it-step.jpg" />
+    <Content Include="Content\Images\map.jpg" />
     <Content Include="Content\Images\max.jpg" />
     <Content Include="Content\Images\Qualification.jpg" />
     <Content Include="Content\Images\student.png" />
     <Content Include="Content\Images\teacher.png" />
+    <Content Include="Content\Images\user_icon.png" />
     <Content Include="Content\style.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -359,6 +361,7 @@
     <Content Include="Scripts\jquery\jquery-2.2.0.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\mainScript.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\react\react-dom.js" />
     <Content Include="Scripts\react\react-with-addons.js" />
@@ -442,6 +445,7 @@
     <Content Include="Views\Group\Create.cshtml" />
     <Content Include="Views\Group\Edit.cshtml" />
     <Content Include="Views\Group\Delete.cshtml" />
+    <Content Include="Views\Shared\_MainMenu.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

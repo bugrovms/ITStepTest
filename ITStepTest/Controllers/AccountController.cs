@@ -17,6 +17,8 @@ namespace ITStepTest.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
+
+        private StoreDBEntities db = new StoreDBEntities();
         //
         // GET: /Account/Login
 
@@ -145,6 +147,12 @@ namespace ITStepTest.Controllers
                 : message == ManageMessageId.RemoveLoginSuccess ? "Внешняя учетная запись удалена."
                 : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = db.Users.FirstOrDefault(x => x.Email == userName);
+                ViewBag.User = user;
+            }   
             ViewBag.ReturnUrl = Url.Action("Manage");
             return View();
         }
