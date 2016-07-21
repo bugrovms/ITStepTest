@@ -339,7 +339,7 @@ ul.base-items-list>li {
     border-right: 1px solid #bfbfbf;
     border-left: 1px solid #bfbfbf;
     border-bottom: 1px solid #bfbfbf;
-    line-height: 60px;
+    line-height: 40px;
     padding-left: 10px;
     padding-right: 10px;
     position: relative;
@@ -409,4 +409,28 @@ ul.base-items-list > li:hover .menu-block-item-list{
 
 .remove-element {
     color: red;
+}
+
+/* buttons */
+
+.btn-round {
+    background-color: #4fbaed;
+    padding: 10px 25px;
+    border-radius: 50%;
+    font-size: 40px;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-round:hover {
+    background-color: #38ade4;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-global {
+    position: fixed;
+    z-index: 1000;
+    right: 50px;
+    bottom: 50px;
 }

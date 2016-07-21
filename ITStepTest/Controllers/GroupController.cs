@@ -45,6 +45,12 @@ namespace ITStepTest.Controllers
 
         public ActionResult Create()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = db.Users.FirstOrDefault(x => x.Email == userName);
+                ViewBag.User = user;
+            }
             return View();
         }
 
@@ -71,6 +77,12 @@ namespace ITStepTest.Controllers
         public ActionResult Edit(int id = 0)
         {
             Group group = db.Groups.Find(id);
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = db.Users.FirstOrDefault(x => x.Email == userName);
+                ViewBag.User = user;
+            }
             if (group == null)
             {
                 return HttpNotFound();
@@ -100,6 +112,12 @@ namespace ITStepTest.Controllers
         public ActionResult Delete(int id = 0)
         {
             Group group = db.Groups.Find(id);
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = db.Users.FirstOrDefault(x => x.Email == userName);
+                ViewBag.User = user;
+            }
             if (group == null)
             {
                 return HttpNotFound();

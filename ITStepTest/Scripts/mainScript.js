@@ -18,4 +18,16 @@
         }
     });
 
+    $("#search-element").on("change paste keyup", function () {
+        var searchText = $(this).val();
+        $(".base-items-list>li").each(function (index) {
+            var text = $(this).find(".main-content-item-list").html();
+            if (text.toUpperCase().indexOf(searchText.toUpperCase()) + 1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+
 });
