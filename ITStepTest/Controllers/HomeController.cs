@@ -19,6 +19,9 @@ namespace ITStepTest.Controllers
                 var userName = User.Identity.Name;
                 var user = db.Users.FirstOrDefault(x => x.Email == userName);
                 ViewBag.User = user;
+
+                var messages = db.Messages.Count(x => x.Recipient == user.Id && x.Readed == false);
+                ViewBag.Messages = messages;
             }            
             return View();
         }

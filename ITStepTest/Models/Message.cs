@@ -15,9 +15,9 @@ namespace ITStepTest.Models
     public partial class Message
     {
         public int Id { get; set; }
-        public string text { get; set; }
-        public int sender { get; set; }
-        public int recipient { get; set; }
-        public bool readed { get; set; }
+        public string Text { get; set; }
+        public int Sender { get; set; }
+        public int Recipient { get; set; }
+        public bool Readed { get; set; }
     }
 }

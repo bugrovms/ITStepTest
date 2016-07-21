@@ -109,16 +109,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="Message">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="sender" Type="Int32" Nullable="false" />
-          <Property Name="recipient" Type="Int32" Nullable="false" />
-          <Property Name="readed" Type="Boolean" Nullable="false" />
-        </EntityType>
         <EntityType Name="Subject">
           <Key>
             <PropertyRef Name="Id" />
@@ -136,7 +126,6 @@
         </EntityType>
         <EntityContainer Name="StoreDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Groups" EntityType="Self.Group" />
-          <EntitySet Name="Messages" EntityType="Self.Message" />
           <EntitySet Name="Subjects" EntityType="Self.Subject" />
           <EntitySet Name="Tests" EntityType="Self.Test" />
           <EntitySet Name="Questions" EntityType="StoreDBModel.Question" />
@@ -144,6 +133,7 @@
           <EntitySet Name="Comments" EntityType="StoreDBModel.Comment" />
           <EntitySet Name="Results" EntityType="StoreDBModel.Result" />
           <EntitySet Name="Users" EntityType="StoreDBModel.User" />
+          <EntitySet Name="Messages" EntityType="StoreDBModel.Message" />
         </EntityContainer>
         <EntityType Name="Question">
           <Key>
@@ -195,6 +185,16 @@
           <Property Name="GroupId" Type="Int32" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Sender" Type="Int32" Nullable="false" />
+          <Property Name="Recipient" Type="Int32" Nullable="false" />
+          <Property Name="Readed" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -206,17 +206,6 @@
               <MappingFragment StoreEntitySet="Groups">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Messages">
-            <EntityTypeMapping TypeName="StoreDBModel.Message">
-              <MappingFragment StoreEntitySet="Messages">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="text" ColumnName="text" />
-                <ScalarProperty Name="sender" ColumnName="sender" />
-                <ScalarProperty Name="recipient" ColumnName="recipient" />
-                <ScalarProperty Name="readed" ColumnName="readed" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -288,6 +277,17 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="StoreDBModel.Message">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="Readed" ColumnName="readed" />
+                <ScalarProperty Name="Recipient" ColumnName="recipient" />
+                <ScalarProperty Name="Sender" ColumnName="sender" />
+                <ScalarProperty Name="Text" ColumnName="text" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -26,7 +26,6 @@ namespace ITStepTest.Models
         }
     
         public DbSet<Group> Groups { get; set; }
-        public DbSet<Message> Messages { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<Question> Questions { get; set; }
@@ -34,5 +33,6 @@ namespace ITStepTest.Models
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Result> Results { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Message> Messages { get; set; }
     }
 }

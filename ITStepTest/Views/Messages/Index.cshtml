@@ -12,16 +12,16 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.text)
+            @Html.DisplayNameFor(model => model.Text)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.sender)
+            @Html.DisplayNameFor(model => model.Sender)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.recipient)
+            @Html.DisplayNameFor(model => model.Recipient)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.readed)
+            @Html.DisplayNameFor(model => model.Readed)
         </th>
         <th></th>
     </tr>
@@ -29,16 +29,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.text)
+            @Html.DisplayFor(modelItem => item.Text)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.sender)
+            @Html.DisplayFor(modelItem => item.Sender)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.recipient)
+            @Html.DisplayFor(modelItem => item.Recipient)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.readed)
+            @Html.DisplayFor(modelItem => item.Readed)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
