@@ -1,8 +1,67 @@
-﻿@model IEnumerable<ITStepTest.Models.Message>
+﻿@model IEnumerable<ITStepTest.Models.MessageInformationModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Сообщения";
 }
+
+@Html.Partial("_MainMenu")
+
+<section class="main-section-content">
+    <div class="row ">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <h3>
+                    <b>Сообщения</b>
+                </h3>
+                <hr />
+                <div>
+                    <div>
+                        @Html.ActionLink("+", "Create", new { }, new { @class = "btn-round btn-global" })
+                    </div>
+                    <ul class="none-list-marker message-items-list">
+                        @foreach (var item in Model)
+                        {
+                            if(item.SenderId == ViewBag.User.Id) {
+                              <li class="messege-info-send">
+                                  <div class="main-message">
+                                      <div class="message-recipient">
+                                          @Html.DisplayFor(modelItem => item.Recipient)
+                                      </div>
+                                      <div class="message-text">
+                                          @Html.DisplayFor(modelItem => item.Text)
+                                      </div> 
+                                  </div>                                                               
+                            </li>
+                            }
+                            else
+                            {
+                                <li class="messege-info-get">
+                                    <div class="main-message">
+                                        <div class="message-sender">
+                                            @Html.DisplayFor(modelItem => item.Sender)
+                                        </div>
+                                        <div class="message-text">
+                                            @Html.DisplayFor(modelItem => item.Text)
+                                        </div>
+                                    </div>                                    
+                                </li>
+                            }
+
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div id="scrollup">
+        <img alt="Прокрутить вверх" src="/Images/to_top.png">
+    </div>
+</section>
+
+
+
+
 
 <h2>Index</h2>
 

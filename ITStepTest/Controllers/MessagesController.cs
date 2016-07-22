@@ -18,7 +18,32 @@ namespace ITStepTest.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Messages.ToList());
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = db.Users.FirstOrDefault(x => x.Email == userName);
+                ViewBag.User = user;
+
+                var messages = db.Messages.Count(x => x.Recipient == user.Id && x.Readed == false);
+                ViewBag.Messages = messages;
+            }
+            var messagesList = db.Messages.ToList().OrderByDescending(x => x.Id);
+            List<MessageInformationModel> messageInfo = new List<MessageInformationModel>();
+            foreach (var message in messagesList) 
+            {
+                var sender = db.Users.FirstOrDefault(x => x.Id == message.Sender).Email;
+                var recipient = db.Users.FirstOrDefault(x => x.Id == message.Recipient).Email;
+                messageInfo.Add(new MessageInformationModel { 
+                    Id = message.Id,
+                    Text = message.Text,
+                    Sender = sender,
+                    SenderId = message.Sender,
+                    Recipient = recipient,
+                    RecipientId = message.Recipient,
+                    Readed = message.Readed
+                });
+            }
+            return View(messageInfo);
         }
 
         //

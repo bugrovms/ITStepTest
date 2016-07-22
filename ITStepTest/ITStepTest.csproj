@@ -208,6 +208,7 @@
     <Compile Include="Models\Group.cs">
       <DependentUpon>StorageDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MessageInformationModel.cs" />
     <Compile Include="Models\Message.cs">
       <DependentUpon>StorageDB.tt</DependentUpon>
     </Compile>
