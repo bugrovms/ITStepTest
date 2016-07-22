@@ -517,3 +517,8 @@ ul.message-items-list {
     z-index: 100;
     }
 
+.message-items-list .message-sender,
+.message-items-list .message-recipient {
+    font-size: 12px;
+}
+

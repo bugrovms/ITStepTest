@@ -195,6 +195,7 @@
     <Compile Include="Controllers\ResultController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VariantController.cs" />
     <Compile Include="Enums\Roles.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -447,6 +448,7 @@
     <Content Include="Views\Group\Edit.cshtml" />
     <Content Include="Views\Group\Delete.cshtml" />
     <Content Include="Views\Shared\_MainMenu.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

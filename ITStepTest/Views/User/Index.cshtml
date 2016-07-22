@@ -1,7 +1,7 @@
-﻿@model IEnumerable<ITStepTest.Models.Group>
+﻿@model IEnumerable<ITStepTest.Models.User>
 
 @{
-    ViewBag.Title = "Учебные группы";
+    ViewBag.Title = "Пользователи";
 }
 
 @Html.Partial("_MainMenu")
@@ -12,11 +12,11 @@
             <div class="col-md-12">
                 <br /><br />
                 <h3>
-                    <b>Учебные группы</b>
+                    <b>Пользователи</b>
                 </h3>
                 <hr />
                 <div>
-                    <input type="text" name="search" placeholder="Поиск..." id="search-element" class="form-control"/>
+                    <input type="text" name="search" placeholder="Поиск..." id="search-element" class="form-control" />
                     <br /><br />
                 </div>
                 <div>
@@ -26,10 +26,10 @@
                     <ul class="none-list-marker base-items-list">
                         @foreach (var item in Model)
                         {
-                              <li>
+                            <li>
                                 <div class="show-marker"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></div>
                                 <div class="main-content-item-list">
-                                    @Html.DisplayFor(modelItem => item.Name)
+                                    @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
                                 </div>
                                 <div class="menu-block-item-list">
                                     <div class="dropdown">
@@ -41,13 +41,10 @@
                                                 <span class="glyphicon glyphicon-pencil  edit-element" aria-hidden="true"></span>
                                                 @Html.ActionLink("Edit", "Edit", new { id = item.Id })
                                             </li>
-                                            @if (false)
-                                            {
-                                                 <li>
-                                                <span class="glyphicon glyphicon-info-sign info-element" aria-hidden="true"></span>
-                                                @Html.ActionLink("Details", "Details", new { id = item.Id })
-                                            </li>
-                                            }                                           
+                                                <li>
+                                                    <span class="glyphicon glyphicon-info-sign info-element" aria-hidden="true"></span>
+                                                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                                                </li>
                                             <li>
                                                 <span class="glyphicon glyphicon-remove remove-element" aria-hidden="true"></span>
                                                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
@@ -55,11 +52,11 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </li>                          
+                            </li>
                         }
 
 
-                    </ul>                    
+                    </ul>
                 </div>
             </div>
         </div>
@@ -68,6 +65,3 @@
         <img alt="Прокрутить вверх" src="/Images/to_top.png">
     </div>
 </section>
-
-
-
