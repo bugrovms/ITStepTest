@@ -1,59 +1,105 @@
 ﻿@model ITStepTest.Models.Message
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Сообщения";
+
+    List<SelectListItem> users = new List<SelectListItem>();
+    int i = 0;
+    foreach (var user in ViewBag.Users)
+    {
+        if (user.Id != ViewBag.User.Id) {
+            if (i < 1)
+            {
+                users.Add(new SelectListItem
+                {
+                    Text = user.Email,
+                    Value = user.Id.ToString(),
+                    Selected = true
+                });
+            }
+            else
+            {
+                users.Add(new SelectListItem
+                {
+                    Text = user.Email,
+                    Value = user.Id.ToString()
+                });
+            }
+
+            i++;
+        }        
+    }
 }
 
-<h2>Create</h2>
+@Html.Partial("_MainMenu")
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+<section class="main-section-content">
+    <div class="row ">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <h3>
+                    <b>Создать сообщение</b>
+                </h3>
+                <hr />
 
-    <fieldset>
-        <legend>Message</legend>
+                @using (Html.BeginForm())
+                {
+                    <div class="error">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.text)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.text)
-            @Html.ValidationMessageFor(model => model.text)
-        </div>
+                        <fieldset>                        
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.sender)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.sender)
-            @Html.ValidationMessageFor(model => model.sender)
-        </div>
+                            <div class="editor-label hide">
+                                @Html.LabelFor(model => model.Sender)
+                            </div>
+                            <div class="editor-field hide">
+                                @Html.TextBoxFor(model => model.Sender, new { @class = "form-control", @Value = ViewBag.User.Id })
+                                @Html.ValidationMessageFor(model => model.Sender)
+                            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.recipient)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.recipient)
-            @Html.ValidationMessageFor(model => model.recipient)
-        </div>
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Recipient, "Получатель")
+                            </div>
+                            <div class="editor-field">                             
+                                @Html.DropDownListFor(m => m.Recipient, users, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Recipient)
+                            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.readed)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.readed)
-            @Html.ValidationMessageFor(model => model.readed)
-        </div>
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Text, "Сообщение")
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextArea("Text", new { @class = "form-control", rows = 10 })
+                                @Html.ValidationMessageFor(model => model.Text)
+                            </div>
 
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
+                            <div class="editor-label hide">
+                                @Html.LabelFor(model => model.Readed)
+                            </div>
+                            <div class="editor-field hide">
+                                @Html.EditorFor(model => model.Readed)
+                                @Html.ValidationMessageFor(model => model.Readed)
+                            </div>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+                            <p>
+                                <input type="submit" class="btn btn-default" value="Отправить" />
+                            </p>                          
+                        </fieldset>
+                }
+                <br />
+                <div>
+                    @Html.ActionLink("Вернуться к списку", "Index")
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div id="scrollup">
+        <img alt="Прокрутить вверх" src="/Images/to_top.png">
+    </div>
+</section>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
