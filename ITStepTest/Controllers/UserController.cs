@@ -10,7 +10,8 @@ namespace ITStepTest.Controllers
     public class UserController : Controller
     {
 
-        private StoreDBEntities db = new StoreDBEntities();
+        private UserService userService = new UserService();
+        private MessageService messageService = new MessageService();
         //
         // GET: /User/
 
@@ -19,12 +20,11 @@ namespace ITStepTest.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var userName = User.Identity.Name;
-                var user = db.Users.FirstOrDefault(x => x.Email == userName);
-                ViewBag.User = user;
-                var messages = db.Messages.Count(x => x.Recipient == user.Id && x.Readed == false);
-                ViewBag.Messages = messages;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;                
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
             }
-            return View(db.Users.ToList());
+            return View(userService.GetAll());
         }
 
     }

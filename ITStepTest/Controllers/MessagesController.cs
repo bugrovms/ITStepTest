@@ -113,17 +113,27 @@ namespace ITStepTest.Controllers
             return View(message);
         }
 
+
+        // GET: /Messages/Readed/5
+
+        public ActionResult Readed(int id = 0)
+        {
+            Message message = db.Messages.Find(id);
+            message.Readed = true;
+            db.Entry(message).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         //
         // GET: /Messages/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
             Message message = db.Messages.Find(id);
-            if (message == null)
-            {
-                return HttpNotFound();
-            }
-            return View(message);
+            db.Messages.Remove(message);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         //

@@ -213,6 +213,7 @@
     <Compile Include="Models\Message.cs">
       <DependentUpon>StorageDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MessageService.cs" />
     <Compile Include="Models\Question.cs">
       <DependentUpon>StorageDB.tt</DependentUpon>
     </Compile>
@@ -243,6 +244,7 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>StorageDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserService.cs" />
     <Compile Include="Models\Variant.cs">
       <DependentUpon>StorageDB.tt</DependentUpon>
     </Compile>
@@ -413,10 +415,7 @@
     <Content Include="Views\Test\Edit.cshtml" />
     <Content Include="Views\Test\Delete.cshtml" />
     <Content Include="Views\Messages\Index.cshtml" />
-    <Content Include="Views\Messages\Details.cshtml" />
     <Content Include="Views\Messages\Create.cshtml" />
-    <Content Include="Views\Messages\Edit.cshtml" />
-    <Content Include="Views\Messages\Delete.cshtml" />
     <Content Include="Views\Subject\Index.cshtml" />
     <Content Include="Views\Subject\Details.cshtml" />
     <Content Include="Views\Subject\Create.cshtml" />

@@ -522,3 +522,38 @@ ul.message-items-list {
     font-size: 12px;
 }
 
+.not-read .main-message {
+    background-color: #44d254 !important;
+    color: white;
+}
+
+.not-read .main-message:after {
+    background-color: #44d254 !important;
+}
+
+.message-items-list .messege-info-send .message-management-button,
+.message-items-list .messege-info-get .message-management-button {
+           position: absolute;
+    top: 5px;
+    list-style-type: none;
+    right: 10px;
+    display: none;
+}
+
+.message-items-list .messege-info-send .message-management-button>li,
+.message-items-list .messege-info-get .message-management-button>li {
+    display:inline-block;
+}
+
+.message-items-list .messege-info-send:hover .message-management-button,
+.message-items-list .messege-info-get:hover .message-management-button {
+    display:block;
+}
+
+.message-items-list .messege-info-get .message-management-button .glyphicon-ok {
+    color: white;
+}
+
+.message-items-list .messege-info-send .message-management-button .glyphicon-trash {
+    color: white;
+}

@@ -23,7 +23,7 @@
                         @foreach (var item in Model)
                         {
                             if(item.SenderId == ViewBag.User.Id) {
-                              <li class="messege-info-send">
+                                     <li class="messege-info-send">
                                   <div class="main-message">
                                       <div class="message-recipient">
                                          Кому: @Html.DisplayFor(modelItem => item.Recipient)
@@ -31,11 +31,18 @@
                                       <div class="message-text">
                                           @Html.DisplayFor(modelItem => item.Text)
                                       </div> 
+                                      <ul class="message-management-button">
+                                          <li>
+                                              <a href="/Messages/Delete/@item.Id"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                          </li>
+                                      </ul>
                                   </div>                                                               
-                            </li>
+                            </li>                             
+
                             }
                             else
                             {
+                                if (item.Readed) {
                                 <li class="messege-info-get">
                                     <div class="main-message">
                                         <div class="message-sender">
@@ -46,6 +53,25 @@
                                         </div>
                                     </div>                                    
                                 </li>
+                                }
+                                else
+                                {
+                                    <li class="messege-info-get not-read">
+                                        <div class="main-message">
+                                            <div class="message-sender">
+                                                От: @Html.DisplayFor(modelItem => item.Sender)
+                                            </div>
+                                            <div class="message-text">
+                                                @Html.DisplayFor(modelItem => item.Text)
+                                            </div>
+                                            <ul class="message-management-button">
+                                                <li>
+                                                    <a href="/Messages/Readed/@item.Id"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                }
                             }
 
                         }

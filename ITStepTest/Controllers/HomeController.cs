@@ -12,16 +12,16 @@ namespace ITStepTest.Controllers
     {
 
         private StoreDBEntities db = new StoreDBEntities();
+        private UserService userService = new UserService();
+        private MessageService messageService = new MessageService();
 
         public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated) {
                 var userName = User.Identity.Name;
-                var user = db.Users.FirstOrDefault(x => x.Email == userName);
+                var user = userService.GetByName(userName);
                 ViewBag.User = user;
-
-                var messages = db.Messages.Count(x => x.Recipient == user.Id && x.Readed == false);
-                ViewBag.Messages = messages;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
             }            
             return View();
         }
