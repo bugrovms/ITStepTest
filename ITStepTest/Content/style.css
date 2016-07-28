@@ -17,7 +17,7 @@
 .main-text {
     font-size: 1.2em;
 }
-C:\Users\temich1608\Desktop\git\ITStepTest\ITStepTest\Content\style.css
+
 .main-image {
     max-width: 500px;
 }
@@ -582,4 +582,8 @@ ul.message-items-list {
     top: 0;
     left: 35%;
     color: #9e9e9e;
+}
+
+.menu-block-item-list .dropdown-menu{
+    margin-top: -10px;
 }
