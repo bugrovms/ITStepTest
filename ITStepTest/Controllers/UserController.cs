@@ -27,5 +27,17 @@ namespace ITStepTest.Controllers
             return View(userService.GetAll());
         }
 
+        public ActionResult Activate(int id = 0)
+        {
+            userService.ActivateUserById(id, true);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Deactivate(int id = 0)
+        {
+            userService.ActivateUserById(id, false);
+            return RedirectToAction("Index");
+        }
+
     }
 }

@@ -17,19 +17,66 @@
                 <hr />
                 <div>
                     <input type="text" name="search" placeholder="Поиск..." id="search-element" class="form-control" />
-                    <br /><br />
+                    <br />
                 </div>
+                <div class="checkbox-list">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="users" checked>Студенты
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="teachers" checked>Преподаватели
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="admins" checked>Администраторы
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="activate" />Не активные
+                        </label>
+                    </div>
+                </div>
+                <br />
                 <div>
                     <div>
                         @Html.ActionLink("+", "Create", new { }, new { @class = "btn-round btn-global" })
                     </div>
-                    <ul class="none-list-marker base-items-list">
+                    <ul class="none-list-marker base-items-list user-base-list">
                         @foreach (var item in Model)
                         {
                             <li>
-                                <div class="show-marker"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></div>
+                               @if (item.Active)
+                               {
+                                <a href="/User/Deactivate/@item.Id">
+                                    <div class="show-marker"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></div>
+                                </a>
+                               }
+                               else
+                               {
+                                <a href="/User/Activate/@item.Id">
+                                    <div class="show-marker"><span class="glyphicon glyphicon-tag graphicon-red" aria-hidden="true"></span></div>
+                                </a>
+                               }
+                                
                                 <div class="main-content-item-list">
                                     @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+                                    <div class="main-content-help-info">
+                                        @if(item.Role == 0)
+                                        {
+                                            <span>Студент</span>
+                                        } else if (item.Role == 1)
+                                        {
+                                            <span>Преподаватель</span>
+                                        } else if (item.Role == 2)
+                                        {
+                                            <span>Администратор</span>
+                                        }
+                                    </div>
                                 </div>
                                 <div class="menu-block-item-list">
                                     <div class="dropdown">

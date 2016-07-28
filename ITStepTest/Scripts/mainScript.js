@@ -30,4 +30,72 @@
         });
     });
 
+    var userSearchArray = ['Администратор', 'Студент', 'Преподаватель'];
+
+    let prepareUserArray = function (element, value) {
+        var check = userSearchArray.some(function (item, index, array) {
+            return item == value;
+        });
+        if ($(element).prop("checked")) {
+            if (!check) { userSearchArray.push(value); }
+        } else {
+            if (check) {
+                for (var i = 0; i < userSearchArray.length; i++) {
+                    if (userSearchArray[i] == value) {
+                        userSearchArray.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+        }
+    };
+
+    var searchUser = function () {
+        $(".user-base-list>li").each(function (index) {
+
+            var text = $(this).find(".main-content-help-info>span").html();
+            var checkRole = userSearchArray.some(function (element, index, array) {
+                return element == text;
+            });
+            if (checkRole) {
+                var checkActive = userSearchArray.some(function (element, index, array) {
+                    return element == 'graphicon-red';
+                });
+                if (checkActive) {
+                    var notActive = $(this).find(".glyphicon-tag").hasClass("graphicon-red");
+                    if (notActive) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                } else {
+                $(this).show();
+                }
+               
+            } else {
+                $(this).hide();
+            }            
+        });
+    };
+
+    $("#activate").on("change", function () {
+        prepareUserArray(this, 'graphicon-red');        
+        searchUser();
+    });
+
+    $("#admins").on("change", function () {
+        prepareUserArray(this, 'Администратор');
+        searchUser();
+    });
+
+    $("#teachers").on("change", function () {
+        prepareUserArray(this, 'Преподаватель');
+        searchUser();
+    });
+
+    $("#users").on("change", function () {
+        prepareUserArray(this, 'Студент');
+        searchUser();
+    })
+
 });
