@@ -1,0 +1,44 @@
+﻿@model ITStepTest.Models.User
+
+@{
+    ViewBag.Title = "Пользователи";
+}
+
+@Html.Partial("_MainMenu")
+
+<section class="main-section-content">
+    <div class="row ">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <h3>
+                    <b>Удалить пользователя</b>
+                </h3>
+                <hr />
+
+                <p>Вы действительно хотите удалить пользователя?</p>
+                <p>
+                   @Html.DisplayFor(model => model.LastName) @Html.DisplayFor(model => model.FirstName)
+                </p>
+                @using (Html.BeginForm())
+                {
+                    <div class="error">
+                        @Html.AntiForgeryToken()
+                    </div>
+                    <p>
+                        <input type="submit" class="btn btn-default" value="Удалить" />
+                    </p>
+                }
+
+
+                <br />
+                <div>
+                    @Html.ActionLink("Вернуться к списку", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="scrollup">
+        <img alt="Прокрутить вверх" src="/Images/to_top.png">
+    </div>
+</section>

@@ -50,7 +50,7 @@ namespace ITStepTest.Controllers
         }
 
         //
-        // POST: /Group/Edit/5
+        // POST: /User/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -63,6 +63,93 @@ namespace ITStepTest.Controllers
                 return RedirectToAction("Index");
             }
             return View(user);
+        }
+
+        //
+        // GET: /User/Details/5
+
+        public ActionResult Details(int id = 0)
+        {
+            User userSelect = db.Users.Find(id);
+            Group groupSelect = db.Groups.Find(userSelect.GroupId);
+            var selectRole = "";
+            switch (userSelect.Role) { 
+                case 0:
+                    selectRole = "Студент";
+                    break;
+                case 1:
+                    selectRole = "Преподаватель";
+                    break;
+                case 2:
+                    selectRole = "Администратор";
+                    break;
+            }
+            UserInformationModel userInfo = new UserInformationModel
+            {
+                Id=userSelect.Id,
+                Email=userSelect.Email,
+                LastName=userSelect.LastName,
+                FirstName=userSelect.FirstName,
+                Date=userSelect.Date,
+                DateCreate=userSelect.DateCreate,
+                Active=userSelect.Active,
+                Phone=userSelect.Phone,                
+                Role = selectRole,
+                RoleId = userSelect.Role
+            };
+            if (groupSelect == null)
+            {
+                userInfo.Group = "Группа не задана";
+            }
+            else {
+                userInfo.Group = groupSelect.Name;
+            }
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
+                ViewBag.Groups = db.Groups.ToList();
+            }
+            if (userSelect == null)
+            {
+                return HttpNotFound();
+            }
+            return View(userInfo);
+        }
+
+        //
+        // GET: /User/Delete/5
+
+        public ActionResult Delete(int id = 0)
+        {
+            User userSelect = db.Users.Find(id);
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
+            }
+            if (userSelect == null)
+            {
+                return HttpNotFound();
+            }
+            return View(userSelect);
+        }
+
+        //
+        // POST: /User/Delete/5
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            User user = db.Users.Find(id);
+            db.Users.Remove(user);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Activate(int id = 0)

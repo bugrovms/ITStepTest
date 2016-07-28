@@ -1,0 +1,45 @@
+﻿@model ITStepTest.Models.UserInformationModel
+
+@{
+    ViewBag.Title = "Пользователи";
+}
+
+@Html.Partial("_MainMenu")
+
+<section class="main-section-content">
+    <div class="row ">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <h3>
+                    <b>Пользователь</b>
+                </h3>
+                <hr />
+
+                <fieldset>
+                    <img src="~/Content/Images/user_icon.png" class="option-user-icon" style="width:300px;"/>
+                    <h4>@Html.DisplayFor(model => model.LastName) @Html.DisplayFor(model => model.FirstName)</h4>
+                    <p>(@Html.DisplayFor(model => model.Role)) </p>
+                    
+                    <p>E-mail: @Html.DisplayFor(model => model.Email)</p>
+                    <p>Телефон: @Html.DisplayFor(model => model.Phone)</p>
+                    @if (Model.RoleId == 0) { 
+                        <p>Группа: @Html.DisplayFor(model => model.Group)</p>
+                    }
+                    @if (Model.Active)
+                    {
+                        <p style="color:red;">Не активирован</p>
+                    }                  
+                    
+                </fieldset>
+                <br />
+                <div>
+                    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) | @Html.ActionLink("Вернуться к списку", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="scrollup">
+        <img alt="Прокрутить вверх" src="/Images/to_top.png">
+    </div>
+</section>
