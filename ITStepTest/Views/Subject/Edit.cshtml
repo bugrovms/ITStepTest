@@ -1,37 +1,52 @@
 ﻿@model ITStepTest.Models.Subject
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Дисциплины";
 }
 
-<h2>Edit</h2>
+@Html.Partial("_MainMenu")
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+<section class="main-section-content">
+    <div class="row ">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <h3>
+                    <b>Редактировать дисциплину</b>
+                </h3>
+                <hr />
 
-    <fieldset>
-        <legend>Subject</legend>
+                @using (Html.BeginForm())
+                {
+                    <div class="error">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                    </div>
 
-        @Html.HiddenFor(model => model.Id)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
+                    <fieldset>
+                        @Html.HiddenFor(model => model.Id)
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Name, "Название")
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Name)
+                        </div>
+                        <p>
+                            <input type="submit" class="btn btn-default" value="Сохранить" />
+                        </p>
+                    </fieldset>
+                }
+                <br />
+                <div>
+                    @Html.ActionLink("Вернуться к списку", "Index")
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>
-
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    </div>
+    <div id="scrollup">
+        <img alt="Прокрутить вверх" src="/Images/to_top.png">
+    </div>
+</section>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

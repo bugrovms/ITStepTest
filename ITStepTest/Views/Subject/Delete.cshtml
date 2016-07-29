@@ -1,26 +1,45 @@
 ﻿@model ITStepTest.Models.Subject
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Дисциплины";
 }
 
-<h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>Subject</legend>
+@Html.Partial("_MainMenu")
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
+<section class="main-section-content">
+    <div class="row ">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <h3>
+                    <b>Удалить дисциплину</b>
+                </h3>
+                <hr />
+
+                <p>Вы действительно хотите удалить дисциплину?</p>
+                <p>
+                    @Html.DisplayFor(model => model.Name)
+                </p>
+                @using (Html.BeginForm())
+                {
+                    <div class="error">
+                        @Html.AntiForgeryToken()
+                    </div>
+                    <p>
+                        <input type="submit" class="btn btn-default" value="Удалить" />
+                    </p>
+                }
+
+
+                <br />
+                <div>
+                    @Html.ActionLink("Вернуться к списку", "Index")
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
+    <div id="scrollup">
+        <img alt="Прокрутить вверх" src="/Images/to_top.png">
     </div>
-</fieldset>
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-}
+</section>

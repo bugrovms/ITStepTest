@@ -12,12 +12,21 @@ namespace ITStepTest.Controllers
     public class SubjectController : Controller
     {
         private StoreDBEntities db = new StoreDBEntities();
+        private UserService userService = new UserService();
+        private MessageService messageService = new MessageService();
 
         //
         // GET: /Subject/
 
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
+            }    
             return View(db.Subjects.ToList());
         }
 
@@ -27,6 +36,13 @@ namespace ITStepTest.Controllers
         public ActionResult Details(int id = 0)
         {
             Subject subject = db.Subjects.Find(id);
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
+            }    
             if (subject == null)
             {
                 return HttpNotFound();
@@ -39,6 +55,13 @@ namespace ITStepTest.Controllers
 
         public ActionResult Create()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
+            }    
             return View();
         }
 
@@ -65,6 +88,13 @@ namespace ITStepTest.Controllers
         public ActionResult Edit(int id = 0)
         {
             Subject subject = db.Subjects.Find(id);
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
+            }    
             if (subject == null)
             {
                 return HttpNotFound();
@@ -94,6 +124,13 @@ namespace ITStepTest.Controllers
         public ActionResult Delete(int id = 0)
         {
             Subject subject = db.Subjects.Find(id);
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
+            }    
             if (subject == null)
             {
                 return HttpNotFound();

@@ -39,18 +39,18 @@
                                         <ul class="dropdown-menu icon-menu" aria-labelledby="dLabel">
                                             <li>
                                                 <span class="glyphicon glyphicon-pencil  edit-element" aria-hidden="true"></span>
-                                                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                                                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id })
                                             </li>
                                             @if (false)
                                             {
                                                  <li>
                                                 <span class="glyphicon glyphicon-info-sign info-element" aria-hidden="true"></span>
-                                                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                                                @Html.ActionLink("Подробно", "Details", new { id = item.Id })
                                             </li>
                                             }                                           
                                             <li>
                                                 <span class="glyphicon glyphicon-remove remove-element" aria-hidden="true"></span>
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
                                             </li>
                                         </ul>
                                     </div>

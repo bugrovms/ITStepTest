@@ -1,35 +1,51 @@
 ﻿@model ITStepTest.Models.Subject
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Дисциплины";
 }
 
-<h2>Create</h2>
+@Html.Partial("_MainMenu")
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+<section class="main-section-content">
+    <div class="row ">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <h3>
+                    <b>Создать дисциплину</b>
+                </h3>
+                <hr />
 
-    <fieldset>
-        <legend>Subject</legend>
+                @using (Html.BeginForm())
+                {
+                    <div class="error">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
+
+                    <fieldset>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Name, "Название")
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Name)
+                        </div>
+                        <p>
+                            <input type="submit" class="btn btn-default" value="Создать" />
+                        </p>
+                    </fieldset>
+                }
+                <br />
+                <div>
+                    @Html.ActionLink("Вернуться к списку", "Index")
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    </div>
+    <div id="scrollup">
+        <img alt="Прокрутить вверх" src="/Images/to_top.png">
+    </div>
+</section>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
