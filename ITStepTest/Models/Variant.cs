@@ -15,8 +15,8 @@ namespace ITStepTest.Models
     public partial class Variant
     {
         public int Id { get; set; }
-        public string text { get; set; }
-        public bool @true { get; set; }
-        public int question { get; set; }
+        public string Text { get; set; }
+        public bool True { get; set; }
+        public int Question { get; set; }
     }
 }

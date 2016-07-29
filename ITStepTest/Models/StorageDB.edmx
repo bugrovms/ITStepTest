@@ -121,8 +121,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="subject" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Subject" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityContainer Name="StoreDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Groups" EntityType="Self.Group" />
@@ -140,17 +140,17 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="test" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Test" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Variant">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="true" Type="Boolean" Nullable="false" />
-          <Property Name="question" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="True" Type="Boolean" Nullable="false" />
+          <Property Name="Question" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -221,16 +221,16 @@
             <EntityTypeMapping TypeName="StoreDBModel.Test">
               <MappingFragment StoreEntitySet="Tests">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="Subject" ColumnName="subject" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="StoreDBModel.Question">
               <MappingFragment StoreEntitySet="Questions">
-                <ScalarProperty Name="test" ColumnName="test" />
-                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="Test" ColumnName="test" />
+                <ScalarProperty Name="Text" ColumnName="text" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -238,9 +238,9 @@
           <EntitySetMapping Name="Variants">
             <EntityTypeMapping TypeName="StoreDBModel.Variant">
               <MappingFragment StoreEntitySet="Variants">
-                <ScalarProperty Name="question" ColumnName="question" />
-                <ScalarProperty Name="true" ColumnName="true" />
-                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="Question" ColumnName="question" />
+                <ScalarProperty Name="True" ColumnName="true" />
+                <ScalarProperty Name="Text" ColumnName="text" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

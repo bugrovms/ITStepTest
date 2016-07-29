@@ -15,7 +15,7 @@ namespace ITStepTest.Models
     public partial class Question
     {
         public int Id { get; set; }
-        public string text { get; set; }
-        public int test { get; set; }
+        public string Text { get; set; }
+        public int Test { get; set; }
     }
 }

@@ -7,7 +7,7 @@
       <Diagram DiagramId="28ff1c02c119473b933c5395d8b8e0ec" Name="Diagram1">
         <EntityTypeShape EntityType="StoreDBModel.Group" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="StoreDBModel.Subject" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StoreDBModel.Test" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreDBModel.Test" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="StoreDBModel.Question" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="StoreDBModel.Variant" Width="1.5" PointX="5.375" PointY="3.75" />
         <EntityTypeShape EntityType="StoreDBModel.Comment" Width="1.5" PointX="0.75" PointY="6.75" />

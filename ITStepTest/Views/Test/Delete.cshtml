@@ -1,33 +1,65 @@
-﻿@model ITStepTest.Models.Test
+﻿@model ITStepTest.Models.TestInformationModel
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Тесты";
 }
 
-<h2>Delete</h2>
+@Html.Partial("_MainMenu")
 
-<h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>Test</legend>
+<section class="main-section-content">
+    <div class="row ">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <h3>
+                    <b>Удалить тест</b>
+                </h3>
+                <hr />
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.name)
-    </div>
+                <p>Вы действительно хотите удалить тест?</p>
+                <p>
+                    @Html.DisplayFor(model => model.Name)
+                </p>
+                @using (Html.BeginForm())
+                {
+                    <div class="error">
+                        @Html.AntiForgeryToken()
+                    </div>
+                    <div class="form-group hide">
+                            @Html.LabelFor(m => m.Name, "Название")
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Name)
+                        </div>
+                        <div class="form-group hide">
+                            @Html.LabelFor(m => m.Subject, "Дисциплина")
+                            @Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Subject)
+                        </div>
+                        <div class="form-group hide">
+                            @Html.LabelFor(m => m.Page, "Название")
+                            @Html.TextBoxFor(m => m.Page, new { @class = "form-control" })
+                        </div>
+                    <p>
+                        <input type="submit" class="btn btn-default" value="Удалить" />
+                    </p>
+                }
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.subject)
+
+                <br />
+                <div>
+                   @if (ViewBag.Page == "Tests")
+                   {
+                    @Html.ActionLink("Вернуться к списку", "Tests")
+                   }
+                   else
+                   {
+                    @Html.ActionLink("Вернуться к списку", "Index")
+                   }
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.subject)
+    <div id="scrollup">
+        <img alt="Прокрутить вверх" src="/Images/to_top.png">
     </div>
-</fieldset>
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-}
+</section>

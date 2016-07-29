@@ -1,7 +1,7 @@
-﻿@model IEnumerable<ITStepTest.Models.Subject>
+﻿@model IEnumerable<ITStepTest.Models.Test>
 
 @{
-    ViewBag.Title = "Дисциплины";
+    ViewBag.Title = "Тесты";
 }
 
 @Html.Partial("_MainMenu")
@@ -12,7 +12,7 @@
             <div class="col-md-12">
                 <br /><br />
                 <h3>
-                    <b>Дисциплины</b>
+                    <b>@ViewBag.Subject.Name</b>
                 </h3>
                 <hr />
                 <div>
@@ -21,7 +21,7 @@
                 </div>
                 <div>
                     <div>
-                        @Html.ActionLink("+", "Create", new { }, new { @class = "btn-round btn-global" })
+                        @Html.ActionLink("+", "Create", new { id = ViewBag.Subject.Id, page = "Tests" }, new { @class = "btn-round btn-global" })
                     </div>
                     <ul class="none-list-marker base-items-list">
                         @foreach (var item in Model)
@@ -39,23 +39,17 @@
                                         <ul class="dropdown-menu icon-menu" aria-labelledby="dLabel">
                                             <li>
                                                 <span class="glyphicon glyphicon-pencil  edit-element" aria-hidden="true"></span>
-                                                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id })
+                                                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id, page = "Tests" })
                                             </li>
-                                                <li>
-                                                    <span class="glyphicon glyphicon-info-sign info-element" aria-hidden="true"></span>
-                                                    <a href="/Test/Tests/@item.Id">Тесты</a>
-                                                </li>
                                             <li>
                                                 <span class="glyphicon glyphicon-remove remove-element" aria-hidden="true"></span>
-                                                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                                                @Html.ActionLink("Удалить", "Delete", new { id = item.Id, page = "Tests" })
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
                         }
-
-
                     </ul>
                 </div>
             </div>
