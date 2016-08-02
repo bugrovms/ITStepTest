@@ -1,45 +1,79 @@
-﻿@model IEnumerable<ITStepTest.Models.Comment>
+﻿@model IEnumerable<ITStepTest.Models.CommentInformationModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Комментарии";
 }
 
-<h2>Index</h2>
+@Html.Partial("_MainMenu")
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.text)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.test)
-        </th>
-        <th></th>
-    </tr>
+<section class="main-section-content">
+    <div class="row ">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <h3>
+                    <b>Комментарии</b>
+                </h3>
+                <hr />
+                <div>
+                    <input type="text" name="search" placeholder="Поиск..." id="search-element" class="form-control" />
+                    <br /><br />
+                </div>
+                <div>
+                    <div>
+                        @Html.ActionLink("+", "Create", new { }, new { @class = "btn-round btn-global" })
+                    </div>
+                    <ul class="none-list-marker comments-items-list">
+                        @foreach (var item in Model)
+                        {
+                            <li>
+                                <div class="title-comment-item-list">
+                                    <ul class="detail-info-comments">
+                                        <li class="icon-info-comment">
+                                            @if (item.Role == 0) {
+                                                <img src="/Content/Images/student.png" alt="student icon"/>
+                                            }
+                                            else if (item.Role == 1)
+                                            {
+                                                <img src="/Content/Images/teacher.png" alt="teacher icon" />
+                                            }
+                                            else if (item.Role == 2)
+                                            {
+                                                <img src="/Content/Images/administrator.png" alt="administrator icon" />
+                                            } 
+                                        </li>
+                                        <li class="user-info-comment">
+                                            @item.UserFullName
+                                        </li>
+                                        <li class="date-info-comment">
+                                            @item.Date.ToString("dd MMM yyyy")
+                                        </li>
+                                    </ul>
+                                    <ul class="menu-title-comment">
+                                        <li>
+                                            <a href="/Comment/Edit/@item.Id"><span class="glyphicon glyphicon-pencil edit-element" aria-hidden="true"></span></a>
+                                        </li>
+                                        <li>
+                                            <a href="/Comment/Delete/@item.Id"><span class="glyphicon glyphicon-remove remove-element" aria-hidden="true"></span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="text-comment-item-list">
+                                   @item.Text
+                                </div>
+                                <div class="about-test-comment">
+                                    <b>@item.SubjectName: </b>@item.TestName
+                                </div>                           
+                            </li>
+                        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.text)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.test)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
 
-</table>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="scrollup">
+        <img alt="Прокрутить вверх" src="/Images/to_top.png">
+    </div>
+</section>

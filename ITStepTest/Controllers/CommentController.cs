@@ -12,13 +12,42 @@ namespace ITStepTest.Controllers
     public class CommentController : Controller
     {
         private StoreDBEntities db = new StoreDBEntities();
-
+        private UserService userService = new UserService();
+        private MessageService messageService = new MessageService();
         //
         // GET: /Comment/
 
         public ActionResult Index()
         {
-            return View(db.Comments.ToList());
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
+            }
+            var comments = db.Comments.OrderBy(x => x.Date).ToList();
+            List<CommentInformationModel> commentsList = new List<CommentInformationModel>();
+            foreach(var comment in comments)
+            {
+                var user = db.Users.Find(comment.User);
+                var test = db.Tests.Find(comment.Test);
+                var subject = db.Subjects.Find(test.Subject);
+
+                commentsList.Add(new CommentInformationModel { 
+                    Id=comment.Id,
+                    Text = comment.Text,
+                    User = comment.User,
+                    Role = user.Role,
+                    UserFullName = user.LastName + " " + user.FirstName,
+                    Test = comment.Test,
+                    TestName = test.Name,
+                    Subject = test.Subject,
+                    SubjectName = subject.Name,
+                    Date = comment.Date
+                });
+            }
+            return View(commentsList);
         }
 
         //
@@ -39,6 +68,14 @@ namespace ITStepTest.Controllers
 
         public ActionResult Create()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
+            }
+            ViewBag.Tests = db.Tests.ToList();
             return View();
         }
 

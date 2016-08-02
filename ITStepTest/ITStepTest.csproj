@@ -206,6 +206,7 @@
     <Compile Include="Models\Comment.cs">
       <DependentUpon>StorageDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommentInformationModel.cs" />
     <Compile Include="Models\Group.cs">
       <DependentUpon>StorageDB.tt</DependentUpon>
     </Compile>

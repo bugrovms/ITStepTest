@@ -1,7 +1,7 @@
 ﻿@if (Request.IsAuthenticated)
 {
     <ul class="nav navbar-nav navbar-right">
-        <li class="username"><a href="/Messages">Собщения <span class="badge">@ViewBag.Messages</span></a></li>
+        <li class="username"><a href="/Messages">Сообщения <span class="badge">@ViewBag.Messages</span></a></li>
         <li class="username">@Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new {@class = "username", title = "Управление"})</li>
         <li>
             @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm"}))
