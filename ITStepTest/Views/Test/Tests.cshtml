@@ -11,9 +11,19 @@
         <div class="content">
             <div class="col-md-12">
                 <br /><br />
-                <h3>
-                    <b>@ViewBag.Subject.Name</b>
-                </h3>
+                <div class="page-with-list-header">
+                    <h3>
+                        <b>@ViewBag.Subject.Name</b>
+                    </h3>
+                    <ul class="list-header-menu">
+                        <li>
+                            <a href="/Subject/"><span class="glyphicon glyphicon-book  edit-element" aria-hidden="true"></span></a>
+                        </li>
+                        <li>
+                            <a href="/Test/"><span class="glyphicon glyphicon-align-justify info-element" aria-hidden="true"></span></a>
+                        </li>
+                    </ul>
+                </div>               
                 <hr />
                 <div>
                     <input type="text" name="search" placeholder="Поиск..." id="search-element" class="form-control" />

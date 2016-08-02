@@ -26,8 +26,25 @@ namespace ITStepTest.Controllers
                 var user = userService.GetByName(userName);
                 ViewBag.User = user;
                 ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
-            } 
-            return View(db.Tests.ToList());
+            }
+            var subjects = db.Subjects.ToList();
+            List<TestFullModel> testList = new List<TestFullModel>();
+            foreach(var subject in subjects) 
+            {
+                List<TestInformationModel> tests = new List<TestInformationModel>(db.Tests.Where(x => x.Subject == subject.Id).Select(q => new TestInformationModel
+                {
+                    Id = q.Id,
+                    Name = q.Name,
+                    Subject = q.Subject,
+                    Page = "Index"
+                }));
+                testList.Add(new TestFullModel { 
+                    Id = subject.Id,
+                    Name = subject.Name,
+                    Test = tests
+                });
+            }
+            return View(testList);
         }
 
         // GET: /Test/:SubjectId

@@ -587,3 +587,36 @@ ul.message-items-list {
 .menu-block-item-list .dropdown-menu{
     margin-top: -10px;
 }
+
+.page-with-list-header {
+    position: relative;
+}
+
+.page-with-list-header .list-header-menu.small-header-menu{
+    top: 30px;
+}
+
+.page-with-list-header .list-header-menu {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    list-style-type: none;
+}
+
+    .page-with-list-header .list-header-menu > li {
+            display: inline-block;
+        font-size: 24px;
+        opacity: 0.6;
+        padding-left: 10px;
+    }
+
+    .page-with-list-header .list-header-menu > li:hover {
+        opacity: 0.7;
+    }
+
+    .page-with-list-header .list-header-menu.small-header-menu > li {
+         font-size: 16px;        
+        padding-left: 8px;
+    }
+
+    }
