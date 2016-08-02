@@ -13,6 +13,7 @@
           <Property Name="text" Type="nvarchar(max)" Nullable="false" />
           <Property Name="user" Type="int" Nullable="false" />
           <Property Name="test" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
@@ -130,10 +131,10 @@
           <EntitySet Name="Tests" EntityType="Self.Test" />
           <EntitySet Name="Questions" EntityType="StoreDBModel.Question" />
           <EntitySet Name="Variants" EntityType="StoreDBModel.Variant" />
-          <EntitySet Name="Comments" EntityType="StoreDBModel.Comment" />
           <EntitySet Name="Results" EntityType="StoreDBModel.Result" />
           <EntitySet Name="Users" EntityType="StoreDBModel.User" />
           <EntitySet Name="Messages" EntityType="StoreDBModel.Message" />
+          <EntitySet Name="Comments" EntityType="StoreDBModel.Comment" />
         </EntityContainer>
         <EntityType Name="Question">
           <Key>
@@ -151,15 +152,6 @@
           <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="True" Type="Boolean" Nullable="false" />
           <Property Name="Question" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Comment">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="user" Type="Int32" Nullable="false" />
-          <Property Name="test" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Result">
           <Key>
@@ -190,10 +182,20 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Text" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Sender" Type="Int32" Nullable="false" />
           <Property Name="Recipient" Type="Int32" Nullable="false" />
           <Property Name="Readed" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User" Type="Int32" Nullable="false" />
+          <Property Name="Test" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -245,16 +247,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="StoreDBModel.Comment">
-              <MappingFragment StoreEntitySet="Comments">
-                <ScalarProperty Name="test" ColumnName="test" />
-                <ScalarProperty Name="user" ColumnName="user" />
-                <ScalarProperty Name="text" ColumnName="text" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Results">
             <EntityTypeMapping TypeName="StoreDBModel.Result">
               <MappingFragment StoreEntitySet="Results">
@@ -287,6 +279,17 @@
                 <ScalarProperty Name="Readed" ColumnName="readed" />
                 <ScalarProperty Name="Recipient" ColumnName="recipient" />
                 <ScalarProperty Name="Sender" ColumnName="sender" />
+                <ScalarProperty Name="Text" ColumnName="text" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="StoreDBModel.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="Date" ColumnName="date" />
+                <ScalarProperty Name="Test" ColumnName="test" />
+                <ScalarProperty Name="User" ColumnName="user" />
                 <ScalarProperty Name="Text" ColumnName="text" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

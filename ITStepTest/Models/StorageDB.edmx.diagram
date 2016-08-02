@@ -10,10 +10,10 @@
         <EntityTypeShape EntityType="StoreDBModel.Test" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="StoreDBModel.Question" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="StoreDBModel.Variant" Width="1.5" PointX="5.375" PointY="3.75" />
-        <EntityTypeShape EntityType="StoreDBModel.Comment" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="StoreDBModel.Result" Width="1.5" PointX="3.375" PointY="6.75" />
         <EntityTypeShape EntityType="StoreDBModel.User" Width="1.5" PointX="5.375" PointY="6.75" />
         <EntityTypeShape EntityType="StoreDBModel.Message" Width="1.5" PointX="3" PointY="0.625" />
+        <EntityTypeShape EntityType="StoreDBModel.Comment" Width="1.5" PointX="0.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
