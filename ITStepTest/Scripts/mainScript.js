@@ -96,6 +96,18 @@
     $("#users").on("change", function () {
         prepareUserArray(this, 'Студент');
         searchUser();
-    })
+    });
+
+    $("#search-comment").on("change paste keyup", function () {
+        var searchText = $(this).val();
+        $(".comments-items-list>li").each(function (index) {
+            var text = $(this).find(".text-comment-item-list").html();
+            if (text.toUpperCase().indexOf(searchText.toUpperCase()) + 1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
 
 });

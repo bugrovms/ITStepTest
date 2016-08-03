@@ -26,7 +26,7 @@ namespace ITStepTest.Controllers
                 ViewBag.User = user;
                 ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
             }
-            var comments = db.Comments.OrderBy(x => x.Date).ToList();
+            var comments = db.Comments.OrderByDescending(x => x.Date).ToList();
             List<CommentInformationModel> commentsList = new List<CommentInformationModel>();
             foreach(var comment in comments)
             {
