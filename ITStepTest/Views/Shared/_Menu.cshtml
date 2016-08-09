@@ -17,7 +17,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Главная", "Index", "Home")</li>
                     <li>@Html.ActionLink("О нас", "About", "Home")</li>
-                    <li class="ancor"><a href="/#services">Сервисы</a></li>
+                    <li>@Html.ActionLink("Сервисы", "Service", "Home")</li>
                     <li> @Html.ActionLink("Контакты", "Contact", "Home")</li>
                     @if (User.Identity.IsAuthenticated && @ViewBag.User.Role == 2)
                     {

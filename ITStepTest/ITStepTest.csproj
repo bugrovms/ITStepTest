@@ -456,6 +456,7 @@
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\Test\Tests.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
+    <Content Include="Views\Home\Service.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
