@@ -83,17 +83,16 @@ namespace ITStepTest.Controllers
         // POST: /Question/Create
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Question question)
+        public string Create(string text, int test)
         {
-            if (ModelState.IsValid)
+            Question question = new Question()
             {
-                db.Questions.Add(question);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(question);
+                Test = test,
+                Text = text
+            };
+            db.Questions.Add(question);
+            db.SaveChanges();
+            return "done";           
         }
 
         //
