@@ -717,3 +717,7 @@ ul.message-items-list {
     color: black;
     font-size: 12px;
     }
+
+button.btn-fix-style {
+    border: none;
+}
