@@ -61,6 +61,10 @@
                                                 @Html.ActionLink("Редактировать", "Edit", new { id = item.Id, page = item.Page })
                                             </li>
                                             <li>
+                                                <span class="glyphicon glyphicon-edit edit-element" aria-hidden="true"></span>
+                                                <a href="/Question/List/@item.Id">Редактировать вопросы</a>
+                                            </li>
+                                            <li>
                                                 <span class="glyphicon glyphicon-remove remove-element" aria-hidden="true"></span>
                                                 @Html.ActionLink("Удалить", "Delete", new { id = item.Id, page = item.Page })
                                             </li>

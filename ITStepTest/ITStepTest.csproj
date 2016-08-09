@@ -218,6 +218,7 @@
     <Compile Include="Models\Question.cs">
       <DependentUpon>StorageDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\QuestionInformationModel.cs" />
     <Compile Include="Models\Result.cs">
       <DependentUpon>StorageDB.tt</DependentUpon>
     </Compile>
@@ -457,6 +458,7 @@
     <Content Include="Views\Test\Tests.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\Home\Service.cshtml" />
+    <Content Include="Views\Question\List.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

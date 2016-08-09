@@ -12,13 +12,50 @@ namespace ITStepTest.Controllers
     public class QuestionController : Controller
     {
         private StoreDBEntities db = new StoreDBEntities();
+        private UserService userService = new UserService();
+        private MessageService messageService = new MessageService();
 
         //
         // GET: /Question/
 
-        public ActionResult Index()
+        public ActionResult Index(int id = 0)
         {
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
+            }
             return View(db.Questions.ToList());
+        }
+
+        public ActionResult List(int id = 0)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
+            }
+            ViewBag.Test = db.Tests.Find(id);
+            var questions = db.Questions.Where(x => x.Test == id).ToList();
+            List<QuestionInformationModel> result = new List<QuestionInformationModel>();
+            foreach (var question in questions)
+            {
+                var variants = db.Variants.Where(x => x.Question == question.Id).ToList();
+                result.Add(new QuestionInformationModel
+                {
+                    Id = question.Id,
+                    Test = question.Test,
+                    Text = question.Text,
+                    Variants = variants
+                });
+
+            }
+            return View(result);
         }
 
         //

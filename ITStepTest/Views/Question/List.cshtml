@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ITStepTest.Models.QuestionInformationModel>
+
+@{
+    ViewBag.Title = "Тест";
+}
+
+@Html.Partial("_Menu")
+
+<section class="main-section-content">
+    <div class="row ">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <h3>
+                    <b>@ViewBag.Test.Name</b>
+                </h3>
+                <hr />
+                <div>                    
+                    <br /><br />
+                </div>
+                <div>
+                    <div>
+                        @Html.ActionLink("+", "Create", new { }, new { @class = "btn-round btn-global" })
+                    </div>
+                    <ul class="none-list-marker question-items-list">
+                        @foreach (var item in Model)
+                        {
+                            <li>
+                                @item.Text
+                                <hr />
+                                <ul class="variants-items-list">
+                                @foreach (var variant in item.Variants)
+                                {
+                                    <li>@variant.Text - @variant.True</li>
+                                }                                    
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div id="scrollup">
+        <img alt="Прокрутить вверх" src="/Images/to_top.png">
+    </div>
+</section>
