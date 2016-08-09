@@ -29,6 +29,13 @@ namespace ITStepTest.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
+            }  
 
             return View();
         }
@@ -36,6 +43,13 @@ namespace ITStepTest.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
+            }  
 
             return View();
         }

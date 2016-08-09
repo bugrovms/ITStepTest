@@ -1,50 +1,67 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Контакты";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>@ViewBag.Message</h2>
-</hgroup>
+@Html.Partial("_Menu")
 
-<section class="contact">
-    <header>
-        <h3>Phone</h3>
-    </header>
-    <p>
-        <span class="label">Main:</span>
-        <span>425.555.0100</span>
-    </p>
-    <p>
-        <span class="label">After Hours:</span>
-        <span>425.555.0199</span>
-    </p>
-</section>
+<br /><br /><br /><br />
+<section class="main-section-content">   
+    <div class="row">
+        <div class="content">
+            <div class="col-md-6">                
+                <h3 id="contacts">
+                    <b>Контакты</b>
+                </h3>
+                <hr />
+                <img src="/Content/Images/logo-it-step.jpg" alt="logo IT Step" class="contacts-logo-info" />
+                <p>
+                    <b>Компьютерная Академия ШАГ</b>
+                </p>
+                <p>
+                    36020, г. Полтава,
+                    ул. Парижской Коммуны 36A, офис 203
+                </p>
+                <p>
+                    Режим работы:
+                    пн.-пт.: 9:00-18:00;
+                    сб, вс.: выходной
+                </p>
+                <br style="clear: both;" />
+                <img src="/Content/Images/max.jpg" alt="Maxim Bugrov" class="contacts-logo-info" />
+                <p>
+                    <b>Разработчик:</b>
+                </p>
+                <p>
+                    Бугров Максим
+                </p>
+                <p>
+                    <a href="http://vk.com/maks.karateka" class="icon-small vk"></a>
+                    <a href="http://vk.com/maks.karateka" class="icon-small facebook"></a>
+                    <a href="http://vk.com/maks.karateka" class="icon-small gplus"></a>
+                    <a href="http://vk.com/maks.karateka" class="icon-small github"></a>
+                </p>
+            </div>
+            <div class="col-md-6 right-content">
+                <br />
 
-<section class="contact">
-    <header>
-        <h3>Email</h3>
-    </header>
-    <p>
-        <span class="label">Support:</span>
-        <span><a href="mailto:Support@example.com">Support@example.com</a></span>
-    </p>
-    <p>
-        <span class="label">Marketing:</span>
-        <span><a href="mailto:Marketing@example.com">Marketing@example.com</a></span>
-    </p>
-    <p>
-        <span class="label">General:</span>
-        <span><a href="mailto:General@example.com">General@example.com</a></span>
-    </p>
-</section>
-
-<section class="contact">
-    <header>
-        <h3>Address</h3>
-    </header>
-    <p>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399
-    </p>
+                <img src="~/Content/Images/map.jpg" alt="it step map" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="no-padding-content relative">
+            <div class="contacts-global-social">
+                <div class="contacts-global-social-title">Присоединяйся к нам:</div>
+                <div class="contacts-global-social-button">
+                    <a href="#" class="btn btn-lg btn-default">VKONTAKTE</a>
+                    <a href="#" class="btn btn-lg btn-default">TWITTER</a>
+                    <a href="#" class="btn btn-lg btn-default">FACEBOOK</a>
+                </div>
+            </div>
+            <img id="base-images" src="/Content/Images/future-proof-simple.jpg" />
+        </div>
+    </div>    
+    <div id="scrollup">
+        <img alt="Прокрутить вверх" src="/Images/to_top.png">
+    </div>
 </section>

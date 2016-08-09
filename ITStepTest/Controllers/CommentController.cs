@@ -102,6 +102,13 @@ namespace ITStepTest.Controllers
         public ActionResult Edit(int id = 0)
         {
             Comment comment = db.Comments.Find(id);
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
+            }
             if (comment == null)
             {
                 return HttpNotFound();
@@ -131,6 +138,13 @@ namespace ITStepTest.Controllers
         public ActionResult Delete(int id = 0)
         {
             Comment comment = db.Comments.Find(id);
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
+            }
             if (comment == null)
             {
                 return HttpNotFound();

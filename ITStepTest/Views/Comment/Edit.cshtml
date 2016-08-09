@@ -1,53 +1,68 @@
 ﻿@model ITStepTest.Models.Comment
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Комментарии";
 }
 
-<h2>Edit</h2>
+@Html.Partial("_MainMenu")
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+<section class="main-section-content">
+    <div class="row ">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <h3>
+                    <b>Редактировать комментарий</b>
+                </h3>
+                <hr />
 
-    <fieldset>
-        <legend>Comment</legend>
+                @using (Html.BeginForm())
+                {
+                    <div class="error">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                    </div>
 
-        @Html.HiddenFor(model => model.Id)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.text)
+                    <fieldset>
+                        @Html.HiddenFor(model => model.Id)
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Text, "Комментарий")
+                            @Html.TextArea("Text", new { @class = "form-control", rows = 10 })
+                            @Html.ValidationMessageFor(model => model.Text)
+                        </div>
+
+                        <div class="editor-label hide">
+                            @Html.LabelFor(model => model.User)
+                        </div>
+                        <div class="editor-field hide">
+                            @Html.EditorFor(model => model.User)
+                            @Html.ValidationMessageFor(model => model.User)
+                        </div>
+
+                        <div class="editor-label hide">
+                            @Html.LabelFor(model => model.Test)
+                        </div>
+                        <div class="editor-field hide">
+                            @Html.EditorFor(model => model.Test)
+                            @Html.ValidationMessageFor(model => model.Test)
+                        </div>
+                        <p>
+                            <input type="submit" class="btn btn-default" value="Сохранить" />
+                        </p>
+                    </fieldset>
+                }
+                <br />
+                <div>
+                    @Html.ActionLink("Вернуться к списку", "Index")
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.text)
-            @Html.ValidationMessageFor(model => model.text)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.user)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.user)
-            @Html.ValidationMessageFor(model => model.user)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.test)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.test)
-            @Html.ValidationMessageFor(model => model.test)
-        </div>
-
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    </div>
+    <div id="scrollup">
+        <img alt="Прокрутить вверх" src="/Images/to_top.png">
+    </div>
+</section>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

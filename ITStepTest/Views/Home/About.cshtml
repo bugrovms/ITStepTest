@@ -1,34 +1,54 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "О нас";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>@ViewBag.Message</h2>
-</hgroup>
+@Html.Partial("_Menu")
 
-<article>
-    <p>
-        Use this area to provide additional information.
-    </p>
-
-    <p>
-        Use this area to provide additional information.
-    </p>
-
-    <p>
-        Use this area to provide additional information.
-    </p>
-</article>
-
-<aside>
-    <h3>Aside Title</h3>
-    <p>
-        Use this area to provide additional information.
-    </p>
-    <ul>
-        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-        <li>@Html.ActionLink("About", "About", "Home")</li>
-        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-    </ul>
-</aside>
+<br /><br /><br /><br />
+<section class="main-section-content">
+    <div class="row row-gray ">
+        <div class="content">
+            <div class="col-md-6">
+                <h3 id="about">
+                    <b>О нас</b>
+                </h3>
+                <hr />
+                <div class="main-text">
+                    <p>
+                        <b>IT Step Test</b> – это on-line сервис тестирования знаний созданная для очного
+                        итогового контроля качества знаний обучаемых в учебных организациях со
+                        сложной распределённой структурой.
+                    </p>
+                    <p>
+                        <b>Главной целью</b> деятельности является использование и развитие технологий
+                        компьютерного тестирования знаний в учебном процессе.
+                    </p>
+                    <p>
+                        Сервис разработан в рамках дипломного проекта <b>Бугровым Максимом</b>, студентом
+                        IT Step.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 right-content">
+                <br />
+                <img class="main-image" src="/Content/Images/ipad.png" alt="ipad" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="no-padding-content relative">
+            <div class="contacts-global-social">
+                <div class="contacts-global-social-title">Присоединяйся к нам:</div>
+                <div class="contacts-global-social-button">
+                    <a href="#" class="btn btn-lg btn-default">VKONTAKTE</a>
+                    <a href="#" class="btn btn-lg btn-default">TWITTER</a>
+                    <a href="#" class="btn btn-lg btn-default">FACEBOOK</a>
+                </div>
+            </div>
+            <img id="base-images" src="/Content/Images/future-proof-simple.jpg" />
+        </div>
+    </div>
+    <div id="scrollup">
+        <img alt="Прокрутить вверх" src="/Images/to_top.png">
+    </div>
+</section>
