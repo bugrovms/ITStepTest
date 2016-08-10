@@ -146,3 +146,40 @@ $("#createQuestionBtn").click(function () {
         }
     });
 });
+
+$(".addVariantBtn").click(function (e) {
+   // e.preventDefault();
+    var dataid = $(this).attr("data-id");
+    var testId = $(this).attr("data-test");
+    loadCreateModal(dataid, testId);
+});
+
+
+function loadCreateModal(questionId, testId) {
+    $.ajax({
+        type: "POST",
+        url: "/Question/CreateModal",
+        data: {
+            questionId: questionId,
+            testId: testId
+        },
+        success: function (data) {
+            $("#createVariantForm").html(data);
+        }
+    });
+}
+
+$("#requestVariantBtn").click(function () {
+    var frm = $("#createVariantForm");
+    var data = frm.serializeFormJSON();
+    var test = data.test;
+    delete data.test;
+    $.ajax({
+        url: "/Variant/Create",
+        type: "POST",
+        data: data,
+        success: function () {
+            window.location.href = "/Question/List/" + test;
+        }
+    });
+});

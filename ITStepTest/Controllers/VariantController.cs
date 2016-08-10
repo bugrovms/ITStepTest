@@ -46,17 +46,18 @@ namespace ITStepTest.Controllers
         // POST: /Variant/Create
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Variant variant)
+        public string Create(string text, int question, string True = "false")
         {
-            if (ModelState.IsValid)
+            bool select = True == "false" ? false : true;
+            Variant variant = new Variant()
             {
-                db.Variants.Add(variant);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(variant);
+                Question = question,
+                Text = text,
+                True = select
+            };
+            db.Variants.Add(variant);
+            db.SaveChanges();
+            return "done";
         }
 
         //

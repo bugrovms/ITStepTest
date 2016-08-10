@@ -166,6 +166,14 @@ namespace ITStepTest.Controllers
             return RedirectToAction("List", new { id = question.Test });
         }
 
+        [HttpPost]
+        public ActionResult CreateModal(int questionId, int testId)
+        {
+            ViewBag.QuestionId = questionId;
+            ViewBag.TestId = testId;
+            return PartialView("ModalPartial");
+        }
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

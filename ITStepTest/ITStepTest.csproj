@@ -459,6 +459,7 @@
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\Home\Service.cshtml" />
     <Content Include="Views\Question\List.cshtml" />
+    <Content Include="Views\Question\ModalPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
