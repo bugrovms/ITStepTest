@@ -28,8 +28,34 @@
                         @foreach (var item in Model)
                         {
                             <li>
-                                @item.Text
-                                <hr />
+                                <div class="question-item-title">
+                                    <div class="question-title">
+                                        @item.Text
+                                    </div>                                    
+                                    <div class="question-item-management-button menu-block-item-list">
+                                        <div class="dropdown">
+                                            <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+                                            </button>
+                                            <ul class="dropdown-menu icon-menu" aria-labelledby="dLabel">
+                                                <li>
+                                                    <span class="glyphicon glyphicon glyphicon-plus graphicon-create" aria-hidden="true"></span>
+                                                    <a href="/Question/Edit/@item.Id">Добавить вариант ответа</a>
+                                                </li>
+                                                <li>
+                                                    <span class="glyphicon glyphicon-info-sign info-element" aria-hidden="true"></span>
+                                                    <a href="/Question/Edit/@item.Id">Редактировать вопрос</a>
+                                                       </li>
+                                                <li>
+                                                    <span class="glyphicon glyphicon-remove remove-element" aria-hidden="true"></span>
+                                                    <a href="/Question/Delete/@item.Id">Удалить вопрос</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>                                  
+                                </div>
+                                
+                                
                                 <ul class="variants-items-list">
                                 @foreach (var variant in item.Variants)
                                 {

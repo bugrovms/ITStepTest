@@ -105,6 +105,14 @@ namespace ITStepTest.Controllers
             {
                 return HttpNotFound();
             }
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
+            }
+            ViewBag.TestId = question.Test;
             return View(question);
         }
 
@@ -119,7 +127,7 @@ namespace ITStepTest.Controllers
             {
                 db.Entry(question).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("List", new { id = question.Test });
             }
             return View(question);
         }
@@ -134,6 +142,14 @@ namespace ITStepTest.Controllers
             {
                 return HttpNotFound();
             }
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                var user = userService.GetByName(userName);
+                ViewBag.User = user;
+                ViewBag.Messages = messageService.GetRecepientNotReadCount(user.Id);
+            }
+            ViewBag.TestId = question.Test;
             return View(question);
         }
 
@@ -147,7 +163,7 @@ namespace ITStepTest.Controllers
             Question question = db.Questions.Find(id);
             db.Questions.Remove(question);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("List", new { id = question.Test });
         }
 
         protected override void Dispose(bool disposing)

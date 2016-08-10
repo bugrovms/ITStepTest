@@ -1,45 +1,57 @@
 ﻿@model ITStepTest.Models.Question
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Тест";
 }
 
-<h2>Edit</h2>
+@Html.Partial("_Menu")
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+<section class="main-section-content">
+    <div class="row ">
+        <div class="content">
+            <div class="col-md-12">
+                <br /><br />
+                <h3>
+                    <b>Редактировать вопрос</b>
+                </h3>
+                <hr />
 
-    <fieldset>
-        <legend>Question</legend>
+                @using (Html.BeginForm())
+                {
+                    <div class="error">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                    </div>
 
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Text)
+                    <fieldset>
+                        @Html.HiddenFor(model => model.Id)
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Text, "Текст")
+                            @Html.TextBoxFor(m => m.Text, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Text)
+                        </div>
+                        <div class="form-group hide">
+                            @Html.LabelFor(m => m.Test, "Имя")
+                            @Html.TextBoxFor(m => m.Test, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Test)
+                        </div> 
+                        <p>
+                            <br />
+                            <input type="submit" class="btn btn-default" value="Сохранить" />
+                        </p>
+                    </fieldset>
+                }
+                <br />
+                <div>
+                    <a href="/Question/List/@ViewBag.TestId">Вернуться к списку</a>
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Text)
-            @Html.ValidationMessageFor(model => model.Text)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Test)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Test)
-            @Html.ValidationMessageFor(model => model.Test)
-        </div>
-
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    </div>
+    <div id="scrollup">
+        <img alt="Прокрутить вверх" src="/Images/to_top.png">
+    </div>
+</section>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

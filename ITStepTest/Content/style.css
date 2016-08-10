@@ -721,3 +721,43 @@ ul.message-items-list {
 button.btn-fix-style {
     border: none;
 }
+
+.question-items-list {
+    list-style-type: decimal;
+    padding-left: 30px;
+    font-weight: 800;    
+}
+
+    .question-items-list > li{
+        position: relative;
+        margin-bottom: 15px;
+    }
+
+        .question-items-list > li:hover .question-item-management-button {
+            display:block !important;
+        }
+
+.question-item-management-button {
+    opacity: .7;
+}
+
+.question-item-management-button:hover {
+    opacity: .9;
+}
+
+.question-item-management-button > li {
+    display: inline-block;
+        padding-bottom: 15px;
+}
+
+.graphicon-edit {
+    color: #14b714;
+}
+
+.graphicon-create {
+    color: #4fbaed;
+}
+
+.graphicon-delete {
+    color: red;
+}
