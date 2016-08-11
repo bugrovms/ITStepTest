@@ -763,7 +763,7 @@ button.btn-fix-style {
 }
 
 .variants-items-list {
-    list-style-type: none;
+    list-style-type: disc;
     margin-top: 15px;
 }
 

@@ -63,13 +63,14 @@
                                             <div class="variant-item-text">@variant.Text</div>
                                             <ul class="variant-item-management-btn">
                                                 <li>
-                                                    <a href="/Variant/Edit/@variant.Id">
+                                                    <a href="#" data-id="@variant.Id" data-link="/Question/List/@item.Test" class="editVariantBtn" data-toggle="modal" data-target="#editVariant">
                                                         <span class="glyphicon glyphicon-pencil edit-element" aria-hidden="true"></span>
-                                                    </a>
+                                                    </a>  
+                                                   
                                                 </li>
                                                 <li>
-                                                    <a href="/Variant/Delete/@variant.Id">
-                                                    <span class="glyphicon glyphicon-remove remove-element" aria-hidden="true"></span>
+                                                    <a href="#" data-id="@variant.Id" data-link="/Question/List/@item.Test" class="deleteVariantBtn" data-toggle="modal" data-target="#deleteVariant">
+                                                        <span class="glyphicon glyphicon-remove remove-element" aria-hidden="true"></span>
                                                     </a>                                                
                                                 </li>
                                             </ul>
@@ -81,13 +82,13 @@
                                             <div class="variant-item-text">@variant.Text</div>
                                             <ul class="variant-item-management-btn">
                                                 <li>
-                                                    <a href="/Variant/Edit/@variant.Id">
+                                                    <a href="#" data-id="@variant.Id" data-link="/Question/List/@item.Test" class="editVariantBtn" data-toggle="modal" data-target="#editVariant">
                                                         <span class="glyphicon glyphicon-pencil edit-element" aria-hidden="true"></span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="/Variant/Delete/@variant.Id">
-                                                    <span class="glyphicon glyphicon-remove remove-element" aria-hidden="true"></span>
+                                                    <a href="#" data-id="@variant.Id" data-link="/Question/List/@item.Test" class="deleteVariantBtn" data-toggle="modal" data-target="#deleteVariant">
+                                                        <span class="glyphicon glyphicon-remove remove-element" aria-hidden="true"></span>
                                                     </a>                                                
                                                 </li>
                                             </ul>
@@ -150,6 +151,38 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
                     <button type="button" class="btn btn-primary" id="requestVariantBtn">Сохранить</button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteVariant" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Удалить вариант ответа</h4>
+            </div>
+            <form id="deleteVariantForm"></form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-primary" id="requestVariantDeleteBtn">Удалить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editVariant" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Редактировать вариант ответа</h4>
+            </div>
+            <form id="editVariantForm"></form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-primary" id="requestVariantEditBtn">Сохранить</button>
             </div>
         </div>
     </div>

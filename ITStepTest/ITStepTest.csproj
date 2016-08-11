@@ -460,6 +460,8 @@
     <Content Include="Views\Home\Service.cshtml" />
     <Content Include="Views\Question\List.cshtml" />
     <Content Include="Views\Question\ModalPartial.cshtml" />
+    <Content Include="Views\Question\DeleteVariantModalPartial.cshtml" />
+    <Content Include="Views\Question\EditVariantModalPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

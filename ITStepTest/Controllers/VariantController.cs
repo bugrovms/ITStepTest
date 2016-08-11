@@ -60,59 +60,29 @@ namespace ITStepTest.Controllers
             return "done";
         }
 
-        //
-        // GET: /Variant/Edit/5
-
-        public ActionResult Edit(int id = 0)
+        [HttpPost]
+        public string Edit(int Id, int question, string text, string True = "false")
         {
-            Variant variant = db.Variants.Find(id);
-            if (variant == null)
+            bool select = True == "false" ? false : true;
+            Variant variant = new Variant()
             {
-                return HttpNotFound();
-            }
-            return View(variant);
+                Id = Id,
+                Text = text,
+                True = select,
+                Question = question
+            };
+            db.Entry(variant).State = EntityState.Modified;
+            db.SaveChanges();
+            return "done";
         }
-
-        //
-        // POST: /Variant/Edit/5
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Variant variant)
+        public string Delete(int Id)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(variant).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(variant);
-        }
-
-        //
-        // GET: /Variant/Delete/5
-
-        public ActionResult Delete(int id = 0)
-        {
-            Variant variant = db.Variants.Find(id);
-            if (variant == null)
-            {
-                return HttpNotFound();
-            }
-            return View(variant);
-        }
-
-        //
-        // POST: /Variant/Delete/5
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Variant variant = db.Variants.Find(id);
+            Variant variant = db.Variants.Find(Id);
             db.Variants.Remove(variant);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return "done";
         }
 
         protected override void Dispose(bool disposing)

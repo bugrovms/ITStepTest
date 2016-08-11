@@ -183,3 +183,77 @@ $("#requestVariantBtn").click(function () {
         }
     });
 });
+
+$(".deleteVariantBtn").click(function (e) {
+    // e.preventDefault();
+    var dataid = $(this).attr("data-id");
+    var link = $(this).attr("data-link");
+    loadDeleteModal(dataid, link);
+});
+
+function loadDeleteModal(Id, link) {
+    $.ajax({
+        type: "POST",
+        url: "/Question/DeleteVariantModal",
+        data: {
+            id: Id,
+            link: link
+        },
+        success: function (data) {
+            $("#deleteVariantForm").html(data);
+        }
+    });
+}
+
+$("#requestVariantDeleteBtn").click(function () {
+    var frm = $("#deleteVariantForm");
+    var data = frm.serializeFormJSON();
+    var link = data.link;
+    delete data.link;
+    $.ajax({
+        url: "/Variant/Delete",
+        type: "POST",
+        data: data,
+        success: function () {
+            window.location.href = link;
+        }
+    });
+});
+
+/*edit*/
+
+$(".editVariantBtn").click(function (e) {
+    // e.preventDefault();
+    var dataid = $(this).attr("data-id");
+    var link = $(this).attr("data-link");
+    loadEditModal(dataid, link);
+});
+
+function loadEditModal(Id, link) {
+    $.ajax({
+        type: "POST",
+        url: "/Question/EditVariantModal",
+        data: {
+            id: Id,
+            link: link
+        },
+        success: function (data) {
+            $("#editVariantForm").html(data);
+        }
+    });
+}
+
+$("#requestVariantEditBtn").click(function () {
+    var frm = $("#editVariantForm");
+    var data = frm.serializeFormJSON();
+    var link = data.link;
+    delete data.link;
+    $.ajax({
+        url: "/Variant/Edit",
+        type: "POST",
+        data: data,
+        success: function () {
+            window.location.href = link;
+        }
+    });
+});

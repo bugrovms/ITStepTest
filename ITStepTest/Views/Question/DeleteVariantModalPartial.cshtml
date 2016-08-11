@@ -1,0 +1,16 @@
+﻿<div class="modal-body">
+    <div class="form-group">
+        <label>Вы действительно хотите удалить вариант?</label>
+        <div class="modal-dialog-partial-text">
+            @ViewBag.Variant.Text
+        </div>        
+    </div>  
+    <div class="form-group hide">
+        <label for="Id">Variant</label>
+        <input type="text" class="form-control" id="Id" name="Id" value="@ViewBag.Variant.Id">
+    </div>
+    <div class="form-group hide">
+        <label for="Link">Link</label>
+        <input type="text" class="form-control" id="Link" name="link" value="@ViewBag.Link">
+    </div>  
+</div>

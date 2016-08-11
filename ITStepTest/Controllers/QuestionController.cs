@@ -174,6 +174,24 @@ namespace ITStepTest.Controllers
             return PartialView("ModalPartial");
         }
 
+        [HttpPost]
+        public ActionResult DeleteVariantModal(int Id, string link)
+        {
+            Variant variant = db.Variants.Find(Id);
+            ViewBag.Variant = variant;
+            ViewBag.Link = link;
+            return PartialView("DeleteVariantModalPartial");
+        }
+
+        [HttpPost]
+        public ActionResult EditVariantModal(int Id, string link)
+        {
+            Variant variant = db.Variants.Find(Id);
+            ViewBag.Variant = variant;
+            ViewBag.Link = link;
+            return PartialView("EditVariantModalPartial");
+        }
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
