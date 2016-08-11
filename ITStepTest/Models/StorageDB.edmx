@@ -84,7 +84,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="text" Type="varchar(max)" Nullable="false" />
+          <Property Name="text" Type="nvarchar(max)" Nullable="false" />
           <Property Name="true" Type="bit" Nullable="false" />
           <Property Name="question" Type="int" Nullable="false" />
         </EntityType>
@@ -130,11 +130,11 @@
           <EntitySet Name="Subjects" EntityType="Self.Subject" />
           <EntitySet Name="Tests" EntityType="Self.Test" />
           <EntitySet Name="Questions" EntityType="StoreDBModel.Question" />
-          <EntitySet Name="Variants" EntityType="StoreDBModel.Variant" />
           <EntitySet Name="Results" EntityType="StoreDBModel.Result" />
           <EntitySet Name="Users" EntityType="StoreDBModel.User" />
           <EntitySet Name="Messages" EntityType="StoreDBModel.Message" />
           <EntitySet Name="Comments" EntityType="StoreDBModel.Comment" />
+          <EntitySet Name="Variants" EntityType="StoreDBModel.Variant" />
         </EntityContainer>
         <EntityType Name="Question">
           <Key>
@@ -143,15 +143,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Test" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Variant">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="True" Type="Boolean" Nullable="false" />
-          <Property Name="Question" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Result">
           <Key>
@@ -197,6 +188,15 @@
           <Property Name="Test" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
+        <EntityType Name="Variant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="True" Type="Boolean" Nullable="false" />
+          <Property Name="Question" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -232,16 +232,6 @@
             <EntityTypeMapping TypeName="StoreDBModel.Question">
               <MappingFragment StoreEntitySet="Questions">
                 <ScalarProperty Name="Test" ColumnName="test" />
-                <ScalarProperty Name="Text" ColumnName="text" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Variants">
-            <EntityTypeMapping TypeName="StoreDBModel.Variant">
-              <MappingFragment StoreEntitySet="Variants">
-                <ScalarProperty Name="Question" ColumnName="question" />
-                <ScalarProperty Name="True" ColumnName="true" />
                 <ScalarProperty Name="Text" ColumnName="text" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -290,6 +280,16 @@
                 <ScalarProperty Name="Date" ColumnName="date" />
                 <ScalarProperty Name="Test" ColumnName="test" />
                 <ScalarProperty Name="User" ColumnName="user" />
+                <ScalarProperty Name="Text" ColumnName="text" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Variants">
+            <EntityTypeMapping TypeName="StoreDBModel.Variant">
+              <MappingFragment StoreEntitySet="Variants">
+                <ScalarProperty Name="Question" ColumnName="question" />
+                <ScalarProperty Name="True" ColumnName="true" />
                 <ScalarProperty Name="Text" ColumnName="text" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

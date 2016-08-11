@@ -43,7 +43,7 @@
                                                     <a href="#" data-id="@item.Id" data-test="@item.Test" class="addVariantBtn" data-toggle="modal" data-target="#createVariant">Добавить вариант ответа</a>
                                                 </li>
                                                 <li>
-                                                    <span class="glyphicon glyphicon-info-sign info-element" aria-hidden="true"></span>
+                                                    <span class="glyphicon glyphicon-pencil edit-element" aria-hidden="true"></span>
                                                     <a href="/Question/Edit/@item.Id">Редактировать вопрос</a>
                                                        </li>
                                                 <li>
@@ -58,7 +58,42 @@
                                 <ul class="variants-items-list">
                                 @foreach (var variant in item.Variants)
                                 {
-                                    <li>@variant.Text - @variant.True</li>
+                                    if (variant.True) {
+                                        <li class="variant-true">
+                                            <div class="variant-item-text">@variant.Text</div>
+                                            <ul class="variant-item-management-btn">
+                                                <li>
+                                                    <a href="/Variant/Edit/@variant.Id">
+                                                        <span class="glyphicon glyphicon-pencil edit-element" aria-hidden="true"></span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Variant/Delete/@variant.Id">
+                                                    <span class="glyphicon glyphicon-remove remove-element" aria-hidden="true"></span>
+                                                    </a>                                                
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    }
+                                    else 
+                                    { 
+                                        <li>
+                                            <div class="variant-item-text">@variant.Text</div>
+                                            <ul class="variant-item-management-btn">
+                                                <li>
+                                                    <a href="/Variant/Edit/@variant.Id">
+                                                        <span class="glyphicon glyphicon-pencil edit-element" aria-hidden="true"></span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Variant/Delete/@variant.Id">
+                                                    <span class="glyphicon glyphicon-remove remove-element" aria-hidden="true"></span>
+                                                    </a>                                                
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    }
+                                    
                                 }                                    
                                 </ul>
                             </li>
