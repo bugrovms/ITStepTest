@@ -731,10 +731,16 @@ button.btn-fix-style {
     .question-items-list > li{
         position: relative;
         margin-bottom: 15px;
+            position: relative;
+    margin-bottom: 15px;
+    background-color: #d3f1ff;
+    border-radius: 10px;
+    padding: 10px;
     }
 
-        .question-items-list > li:hover .question-item-management-button {
+        .question-items-list > li .question-item-management-button {
             display:block !important;
+            top: 10px;
         }
 
 .question-item-management-button {
@@ -769,8 +775,7 @@ button.btn-fix-style {
 
 .variants-items-list > li {
     position: relative;
-        margin-bottom: 7px;
-        border-bottom: 1px solid white;
+        margin-bottom: 7px;        
 }
 
     .variants-items-list > li.variant-true .variant-item-text {
@@ -791,9 +796,6 @@ ul.variant-item-management-btn {
     display:none;
 }
 
-.variants-items-list > li:hover {
-   border-bottom: 1px solid #eee;
-}
 
 .variants-items-list > li:hover .variant-item-management-btn {
     display: block;
@@ -810,3 +812,93 @@ ul.variant-item-management-btn {
     ul.variant-item-management-btn > li a:hover {
         opacity: .9;
     }
+
+.test-start-question-list {
+    list-style-type: none;
+    position: relative;
+    padding-left: 0;
+}
+
+    .test-start-question-list > li {
+        position:absolute;
+        background-color: #4fbaed;
+        border-radius: 15px;
+            width: 100%;
+    }
+
+        .test-start-question-list > li .test-start-questin {
+             margin: 20px;
+            background-color: #b9e9ff;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 800;
+            text-align: center;
+            padding: 10px;
+            min-height: 100px;
+        }
+
+         .test-start-question-list > li .test-start-variant-list {
+            margin-left: 20px;
+            margin-right: 20px;      
+            color: white;
+            font-size: 16px;      
+        }
+
+         .test-start-question-list > li .test-start-variant-list .checkbox label {
+    font-size: 16px;
+        margin-bottom: 10px;
+}
+            .test-start-question-list > li .test-start-variant-list .checkbox input[type="checkbox"] {
+                margin-top: 5px;
+            }
+
+            .test-start-question-list > li .test-start-variant-list .radio label {
+    font-size: 16px;
+        margin-bottom: 10px;
+}
+            .test-start-question-list > li .test-start-variant-list .radio input[type="radio"] {
+                margin-top: 5px;
+            }
+
+        .test-start-question-list > li .test-start-btn-left {
+                position: absolute;
+    left: -80px;
+    top: 80px;
+        }
+
+        .test-start-question-list > li .test-start-btn-left span {
+           font-size: 70px;
+               opacity: .2;
+    cursor: pointer;
+        }
+
+        .test-start-question-list > li .test-start-btn-left:hover span {
+            opacity: .4;
+        }
+
+        .test-start-question-list > li .test-start-btn-right {
+                position: absolute;
+    right: -80px;
+    top: 80px;
+        }
+
+        .test-start-question-list > li .test-start-btn-right span {
+           font-size: 70px;
+               opacity: .2;
+    cursor: pointer;
+        }
+
+         .test-start-question-list > li .test-start-btn-right:hover span {
+            opacity: .4;
+        }
+
+        .test-start-question-list > li .test-start-info {
+            margin-top: 30px;
+    font-size: 20px;
+    text-align: center;
+    position: absolute;
+    bottom: -40px;
+    width: 100%;
+    font-weight: 900;
+    color: #4fbaed;
+        }

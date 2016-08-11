@@ -15,8 +15,8 @@ namespace ITStepTest.Models
     public partial class Result
     {
         public int Id { get; set; }
-        public int test { get; set; }
-        public int user { get; set; }
-        public int balls { get; set; }
+        public int Test { get; set; }
+        public int User { get; set; }
+        public int Balls { get; set; }
     }
 }

@@ -149,9 +149,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="test" Type="Int32" Nullable="false" />
-          <Property Name="user" Type="Int32" Nullable="false" />
-          <Property Name="balls" Type="Int32" Nullable="false" />
+          <Property Name="Test" Type="Int32" Nullable="false" />
+          <Property Name="User" Type="Int32" Nullable="false" />
+          <Property Name="Balls" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -240,9 +240,9 @@
           <EntitySetMapping Name="Results">
             <EntityTypeMapping TypeName="StoreDBModel.Result">
               <MappingFragment StoreEntitySet="Results">
-                <ScalarProperty Name="balls" ColumnName="balls" />
-                <ScalarProperty Name="user" ColumnName="user" />
-                <ScalarProperty Name="test" ColumnName="test" />
+                <ScalarProperty Name="Balls" ColumnName="balls" />
+                <ScalarProperty Name="User" ColumnName="user" />
+                <ScalarProperty Name="Test" ColumnName="test" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

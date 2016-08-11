@@ -257,3 +257,11 @@ $("#requestVariantEditBtn").click(function () {
         }
     });
 });
+
+function leftQuestionStart(item) {
+    console.log("left", item);
+}
+
+function rightQuestionStart(item) {
+    console.log("right", item);
+}
