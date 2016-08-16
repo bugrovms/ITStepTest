@@ -6,49 +6,39 @@
     string className = "";
 }
 
-@Html.Partial("_Menu")
 
-<section class="main-section-content">
-    <div class="row ">
-        <div class="content">
-            <div class="col-md-12">
-                <br /><br />
-                <h3>
-                    <b>@ViewBag.Test.Name</b>
-                </h3>
-                <hr />
-                <div>
-                    <br /><br />
-                </div>
-                <div>                    
-                    <ul class="test-start-question-list">
-                    @foreach (var item in Model)
-                    { 
+        <div class="start-test">
+            <div class="start-test-test-name">
+                @ViewBag.Test.Name
+            </div>
+            <ul class="test-start-question-list">
+                @foreach (var item in Model)
+                {
 
-                        if (i > 0) 
-                        {
-                            className = "hide" ;
-                        }                                 
-                        <li class="question-@i @className">
-                            <div class="test-start-questin">
-                                @item.Text
-                            </div>
-                            <div class="test-start-variant-list">
-                                <form id="form-answer-@i">
-                                    @{
-                                        int count = 0;
-                                    }
+                    if (i > 0)
+                    {
+                        className = "hide";
+                    }
+                    <li class="question-@i @className">
+                        <div class="test-start-questin">
+                            Вопрос @(i+1): @item.Text
+                        </div>
+                        <div class="test-start-variant-list">
+                            <form id="form-answer-@i" data-test="@ViewBag.Test.Id" data-question="@item.Id">
+                                @{
+                    int count = 0;
+                                }
 
-                                    @foreach (var variant in item.Variants)
+                                @foreach (var variant in item.Variants)
                                 {
                                     if (variant.True)
                                     {
                                         count++;
                                     }
                                 }
-                                    @foreach (var variant in item.Variants)
+                                @foreach (var variant in item.Variants)
                                 {
-                                    if (count>1)
+                                    if (count > 1)
                                     {
                                         <div class="checkbox">
                                             <label>
@@ -60,35 +50,40 @@
                                     {
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" name="@variant.Id"> @variant.Text
+                                                <input type="radio" name="variantId" value="@variant.Id"> @variant.Text
                                             </label>
                                         </div>
                                     }
 
                                 }
-                                </form>
-                            </div>
-                            <div class="test-start-btn-left" onclick="leftQuestionStart(@i)">
-                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            </div>
-                            <div class="test-start-btn-right" onclick="rightQuestionStart(@i)">
-                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            </div>
-                            <div class="test-start-info">
-                                @(i+1)/@Model.ToArray().Length
-                            </div>
-                        </li>
-                        
-                        i++;
-                        
-                         
-                    }               
-                    </ul>
-                </div>
+                            </form>
+                        </div>
+                        <div class="test-start-btn-left" onclick="leftQuestionStart(@i)">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        </div>
+                        <div class="test-start-btn-right" onclick="rightQuestionStart(@i)">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        </div>
+                        <div class="test-start-info">
+                            @(i + 1)/@Model.ToArray().Length
+                        </div>
+                    </li>
+
+                                i++;
+
+
+                }
+            </ul>
+            <div class="global-close-btn">
+                <a href="/Test">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </a>
+                
             </div>
+            <img  class="test-start-background" src="~/Content/Images/Question-back.png" />
         </div>
-    </div>
-    <div id="scrollup">
-        <img alt="Прокрутить вверх" src="/Images/to_top.png">
-    </div>
-</section>
+
+<script>
+    var maxLengthQuestions = @Model.ToArray().Length
+</script>
+        

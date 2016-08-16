@@ -6,12 +6,74 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ITStepTest.Models;
+using Newtonsoft.Json;
 
 namespace ITStepTest.Controllers
 {
     public class ResultController : Controller
     {
         private StoreDBEntities db = new StoreDBEntities();
+        private UserService userService = new UserService();
+
+
+        [HttpPost]
+        public string UpdateRadio(int test, int question, int variantId, string update = "false")
+        {
+            User user = new User();
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                user = userService.GetByName(userName);                
+            }
+            Result result = db.Results.Where(x => x.Test == test).FirstOrDefault();
+            if (result == null)
+            {
+                Result newResult = new Result()
+                {
+                    Test = test,
+                    User = user.Id,
+                };
+
+                var variantsTrue = db.Variants.Where(x=> x.Question == question && x.True && x.Id == variantId).Count();
+                int testQuestions = db.Questions.Where(x => x.Test == test).Count();
+                if (variantsTrue > 0)
+                {
+                    decimal data = 12 / testQuestions;
+                    newResult.Balls = Convert.ToInt32(Math.Round(data, 2) * 100);
+                }
+                else {
+                    newResult.Balls = 0;
+                }
+                db.Results.Add(newResult);
+                db.SaveChanges();
+            } else {
+                var variantsTrue = db.Variants.Where(x => x.Question == question && x.True && x.Id == variantId).Count();
+                int testQuestions = db.Questions.Where(x => x.Test == test).Count();
+                if (update == "false")
+                {
+                    if (variantsTrue > 0)
+                    {
+                        decimal data = 12 / testQuestions;
+                        result.Balls += Convert.ToInt32(Math.Round(data, 2) * 100);
+                    }
+                    else
+                    {
+                        result.Balls += 0;
+                    }
+                }
+                else {
+                    if (variantsTrue == 0)
+                    {
+                        decimal data = 12 / testQuestions;
+                        result.Balls -= Convert.ToInt32(Math.Round(data, 2) * 100);
+                    }                   
+                }
+                
+                db.Entry(result).State = EntityState.Modified;
+                db.SaveChanges();            
+            }
+            return "done";
+        }
 
         //
         // GET: /Result/
@@ -19,6 +81,18 @@ namespace ITStepTest.Controllers
         public ActionResult Index()
         {
             return View(db.Results.ToList());
+        }
+
+        public string Information()
+        {
+            User user = new User();
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+                user = userService.GetByName(userName);
+            }
+            var results = db.Results.Where(x => x.User == user.Id).ToList();
+            return JsonConvert.SerializeObject(results);
         }
 
         //

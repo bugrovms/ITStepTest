@@ -258,10 +258,99 @@ $("#requestVariantEditBtn").click(function () {
     });
 });
 
-function leftQuestionStart(item) {
-    console.log("left", item);
+function leftQuestionStart(item) {   
+    updateAnswer(item, function () {
+        let index = parseInt(item, 10);
+        $('.question-' + item).addClass('hide');
+        if (item == 0) {
+            var newIndex = (maxLengthQuestions - 1)
+            $('.question-' + newIndex).removeClass('hide');
+        } else {
+            var leftIndex = index - 1;
+            $('.question-' + leftIndex).removeClass('hide');
+        }
+    });
 }
 
-function rightQuestionStart(item) {
-    console.log("right", item);
+function rightQuestionStart(item) {   
+    updateAnswer(item, function () {
+        let index = parseInt(item, 10);
+        $('.question-' + item).addClass('hide');
+        if (item == (maxLengthQuestions - 1)) {
+            $('.question-' + 0).removeClass('hide');
+        } else {
+            var newIndex = index + 1;
+            $('.question-' + newIndex).removeClass('hide');
+        }
+    });
 }
+
+function updateAnswer(item, callback) {
+    var dataTest = $("#form-answer-" + item).attr("data-test");
+    var datQuestion = $("#form-answer-" + item).attr("data-variant");
+    var frm = $("#form-answer-" + item);
+    var data = frm.serializeFormJSON();
+    var requestData = {};
+    if (data.variantId != undefined) {
+        requestData.test = dataTest;
+        requestData.question = datQuestion;
+        requestData.variantId = data.variantId;
+        requesData.update = cookiesCheck(item, dataTest);
+    }
+
+    $.ajax({
+        url: "/Result/UpdateRadio",
+        type: "POST",
+        data: requestData,
+        success: function () {
+            callback();
+        }
+    });
+}
+
+function cookiesCheck(item, test) {
+    var store = localStorage.getItem(test);
+    if (store === undefined) {
+        return "false";
+    } else {
+        items = store.split(',');
+        for (var i=0; i<items.length; i++) {
+            if (item[i] == item) {
+                return "true";
+            }
+        }
+        return "false";
+    }   
+}
+
+function setCookies(item, test) {
+    var store = localStorage.getItem(test);
+    var items = [];
+    if (store === undefined) {
+        items.push(item);
+        localStorage.setItem(test, items.join())
+    } else {
+        items = store.split(',');
+        var info = false;
+        for (var i = 0; i < items.length; i++) {
+            if (item[i] == item) {
+                info = true;
+                break;
+            }
+        }
+        if (!info) {
+            items.push(item);
+        }
+        localStorage.setItem(test, items.join())
+    }
+}
+
+$("#btn-change-password").ready(function () {
+    $.ajax({
+        url: "/Result/Information",
+        type: "GET",
+        success: function (data) {
+            console.log(data);
+        }
+    });
+});
