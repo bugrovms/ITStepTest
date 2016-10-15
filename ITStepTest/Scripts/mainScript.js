@@ -286,8 +286,8 @@ function rightQuestionStart(item) {
 }
 
 function updateAnswer(item, callback) {
-    var dataTest = $("#form-answer-" + item).attr("data-test");
-    var datQuestion = $("#form-answer-" + item).attr("data-variant");
+     var dataTest = $("#form-answer-" + item).attr("data-test");
+    var datQuestion = $("#form-answer-" + item).attr("data-question");
     var frm = $("#form-answer-" + item);
     var data = frm.serializeFormJSON();
     var requestData = {};
@@ -295,7 +295,7 @@ function updateAnswer(item, callback) {
         requestData.test = dataTest;
         requestData.question = datQuestion;
         requestData.variantId = data.variantId;
-        requesData.update = cookiesCheck(item, dataTest);
+        requestData.update = cookiesCheck(item, dataTest);
     }
 
     $.ajax({
@@ -310,7 +310,7 @@ function updateAnswer(item, callback) {
 
 function cookiesCheck(item, test) {
     var store = localStorage.getItem(test);
-    if (store === undefined) {
+    if (store === undefined || store == null) {
         return "false";
     } else {
         items = store.split(',');
@@ -350,7 +350,50 @@ $("#btn-change-password").ready(function () {
         url: "/Result/Information",
         type: "GET",
         success: function (data) {
-            console.log(data);
+            console.log("data", data);
+            var response = $.parseJSON(data);
+            console.log("response", response);
+            $(".test-result-list").html(prepareResultTestList(response));
         }
     });
 });
+
+function prepareResultTestList(data) {
+    let result = "";
+    data.forEach(function (item) {
+        result += templateResult(item);
+    });
+    return result;
+}
+
+function templateResult(item) {
+    var res = "<li>" +
+       "<div class='show-marker'><span class='glyphicon glyphicon-tag' aria-hidden='true'></span></div>" +
+       "<div class='main-content-item-list'>" +
+       item.TestName +
+       item.SubjectName +
+       " </div>" +
+       " <div class='balls-block-item-list'>" +
+       convertBalls(item.Balls) +
+       "</div>" +
+       " <div class='result-block-item-list'>" +
+       generateResultImage(item.Balls) +
+       "</div>" +
+       "</li>";
+    return res;
+}
+
+function convertBalls(bal) {
+    return (parseInt(bal) / 100);
+}
+
+function generateResultImage(bal) {
+    var img = "star-1";
+    var ball = convertBalls(bal);
+    if (ball > 6 && ball <= 9) {
+        img = "star-2";
+    } else if (ball > 9) {
+        img = "star-3";
+    }
+    return ("<img class='star-result' src='/Content/Images/" + img + ".png' />");
+}
