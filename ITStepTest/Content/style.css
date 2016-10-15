@@ -972,3 +972,18 @@ img.star-result {
     width: 60px;
     height: 28px;
 }
+
+.close-view-comments-block {
+    position:absolute;
+    top: 0;
+    right: 0;    
+}
+
+    .close-view-comments-block span {
+        cursor: pointer;
+    }
+
+.hide-block-for-comments {
+    position:relative;
+    padding-top: 15px;
+}

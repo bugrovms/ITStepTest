@@ -101,7 +101,8 @@ namespace ITStepTest.Controllers
                     Test = item.Test,
                     TestName = test.Name,
                     Balls = item.Balls,
-                    SubjectName = subject.Name
+                    SubjectName = subject.Name,
+                    Subject = subject.Id
                 });
             }
             return JsonConvert.SerializeObject(resultList);

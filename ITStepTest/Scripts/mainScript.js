@@ -350,9 +350,7 @@ $("#btn-change-password").ready(function () {
         url: "/Result/Information",
         type: "GET",
         success: function (data) {
-            console.log("data", data);
             var response = $.parseJSON(data);
-            console.log("response", response);
             $(".test-result-list").html(prepareResultTestList(response));
         }
     });
@@ -370,11 +368,17 @@ function templateResult(item) {
     var res = "<li>" +
        "<div class='show-marker'><span class='glyphicon glyphicon-tag' aria-hidden='true'></span></div>" +
        "<div class='main-content-item-list'>" +
+       "<a href='/Question/Index/" + item.Test + "'>" +
        item.TestName +
+       "</a> (" +
+        "<a href='/Test/Tests/" + item.Subject + "'>" +
        item.SubjectName +
+       "</a>) " +
        " </div>" +
        " <div class='balls-block-item-list'>" +
+       "оценка " + 
        convertBalls(item.Balls) +
+       " баллов" +
        "</div>" +
        " <div class='result-block-item-list'>" +
        generateResultImage(item.Balls) +
@@ -396,4 +400,70 @@ function generateResultImage(bal) {
         img = "star-3";
     }
     return ("<img class='star-result' src='/Content/Images/" + img + ".png' />");
+}
+
+$(".hide-block-for-comments").hide();
+
+$(".view-comments").click(function (e) {
+    e.stopPropagation();
+    e.preventDefault();
+    let test = $(this).attr("data-test");
+    console.log("click");
+    $.ajax({
+        url: "/Test/Comments/" + test,
+        type: "GET",
+        success: function (data) {
+            console.log("data", data);
+            var response = $.parseJSON(data);
+            $(".hide-block-for-comments").html(prepareCommentsList(response, test));
+            $(".block-for-comments-" + test).show(400);
+        }
+    });
+});
+
+function prepareCommentsList(data, test) {
+    var result = '<ul class="none-list-marker comments-items-list">';
+    result += '<div class="close-view-comments-block"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></div>';
+    $(".block-for-comments-" + test).bind('click', function () {
+        $(".block-for-comments-" + test).hide(400);
+    });
+    data.forEach(function (item) {
+        result +=  convertToComment(item)
+    });
+    result += '</ul>'
+    return result;
+}
+
+function convertToComment(comment) {
+    var data = new Date(comment.Date);
+    console.log('data', data);
+    let role = '<img src="/Content/Images/student.png" alt="student icon"/>';
+    if (comment.Role == 1) {
+        role = '<img src="/Content/Images/teacher.png" alt="teacher icon" />';
+    } else if (comment.Role == 2) {
+        role = '<img src="/Content/Images/administrator.png" alt="administrator icon" />';
+    }
+    return comentResult = '<li>' +
+        '<div class="title-comment-item-list">' + 
+        '<ul class="detail-info-comments">' +
+        '<li class="icon-info-comment">' +
+        role +
+        '</li>' + 
+        '<li class="user-info-comment">' +
+        comment.UserFullName +
+        '</li>' +
+        '<li class="date-info-comment">' +
+        data.toDateString() +
+        '</li>' +
+        '</ul>' +
+        '</div>' +
+        '<div class="text-comment-item-list">' +
+        comment.Text +
+        '</div>' +
+        '<div class="about-test-comment">' +
+        '<b>' +
+        comment.SubjectName + ': ' +
+        '</b>' +
+        comment.TestName +
+        '</div></li>';
 }

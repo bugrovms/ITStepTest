@@ -57,6 +57,10 @@
                                         </button>
                                         <ul class="dropdown-menu icon-menu" aria-labelledby="dLabel">
                                             <li>
+                                                <span class="glyphicon glyphicon-info-sign info-element view-comments" aria-hidden="true"></span>
+                                                <a href="#" class="view-comments" data-test="@item.Id">Просмотреть комментарии</a>
+                                            </li>
+                                            <li>
                                                 <span class="glyphicon glyphicon-pencil  edit-element" aria-hidden="true"></span>
                                                 @Html.ActionLink("Редактировать", "Edit", new { id = item.Id, page = item.Page })
                                             </li>
@@ -76,6 +80,8 @@
                                     </div>
                                 </div>
                             </li>
+                            <div class="hide-block-for-comments block-for-comments-@item.Id">
+                            </div>
                         }
 
 
