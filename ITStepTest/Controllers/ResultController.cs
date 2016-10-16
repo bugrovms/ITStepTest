@@ -108,6 +108,28 @@ namespace ITStepTest.Controllers
             return JsonConvert.SerializeObject(resultList);
         }
 
+
+
+        public string InfoUserResults(int id)
+        {            
+            var results = db.Results.Where(x => x.User == id).ToList();
+            List<TestResultModel> resultList = new List<TestResultModel>();
+            foreach (var item in results)
+            {
+                var test = db.Tests.Where(x => x.Id == item.Test).FirstOrDefault();
+                var subject = db.Subjects.Where(x => x.Id == test.Subject).FirstOrDefault();
+                resultList.Add(new TestResultModel
+                {
+                    Test = item.Test,
+                    TestName = test.Name,
+                    Balls = item.Balls,
+                    SubjectName = subject.Name,
+                    Subject = subject.Id
+                });
+            }
+            return JsonConvert.SerializeObject(resultList);
+        }
+
         //
         // GET: /Result/Details/5
 

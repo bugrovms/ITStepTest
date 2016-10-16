@@ -974,9 +974,10 @@ img.star-result {
 }
 
 .close-view-comments-block {
-    position:absolute;
-    top: 0;
-    right: 0;    
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    cursor: pointer; 
 }
 
     .close-view-comments-block span {

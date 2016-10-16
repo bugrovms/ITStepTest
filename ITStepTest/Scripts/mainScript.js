@@ -467,3 +467,18 @@ function convertToComment(comment) {
         comment.TestName +
         '</div></li>';
 }
+
+$("#user-detail-test-results").ready(function () {
+    var user = $("#user-detail-test-results").attr("data-user");
+    if (user !== undefined) {
+        $.ajax({
+            url: "/Result/InfoUserResults/" + user,
+            type: "GET",
+            success: function (data) {
+                var response = $.parseJSON(data);
+                $(".test-result-list-details").html(prepareResultTestList(response));
+            }
+        });
+    }
+   
+});
