@@ -987,4 +987,15 @@ img.star-result {
 .hide-block-for-comments {
     position:relative;
     padding-top: 15px;
+    padding-bottom: 50px;
+}
+
+.button-add-comment {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    color: white;
+    background: #67bad6;
+    border: 0;
+    line-height: 36px;
 }

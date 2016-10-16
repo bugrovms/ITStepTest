@@ -19,7 +19,7 @@
                     <li class="ancor"><a href="#about">О нас</a></li>
                     <li class="ancor"><a href="#services">Сервисы</a></li>
                     <li class="ancor"><a href="#contacts">Контакты</a></li>
-                    @if (User.Identity.IsAuthenticated && @ViewBag.User.Role == 2)
+                    @if (User.Identity.IsAuthenticated && @ViewBag.User.Role == 2 && @ViewBag.User.Active)
                     {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Управление <span class="caret"></span></a>
@@ -34,6 +34,28 @@
                                 <li>@Html.ActionLink("Комментарии", "Index", "Comment")</li>                                
                             </ul>
                         </li>
+                    }
+                    else if (User.Identity.IsAuthenticated && @ViewBag.User.Role == 1 &&  @ViewBag.User.Active)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Управление <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Пользователи", "Index", "User")</li>
+                                <li>@Html.ActionLink("Учебные группы", "Index", "Group")</li>
+                                <li role="separator" class="divider"></li>
+                                <li>@Html.ActionLink("Дисциплины", "Index", "Subject")</li>
+                                <li role="separator" class="divider"></li>
+                                <li>@Html.ActionLink("Тесты", "Index", "Test")</li>  
+                            </ul>
+                        </li>
+                    }
+                    else if (User.Identity.IsAuthenticated && @ViewBag.User.Role == 0 && @ViewBag.User.Active)
+                    {
+                        <li>@Html.ActionLink("Тесты", "Index", "Test")</li>
+                    }
+                    else if (User.Identity.IsAuthenticated && (@ViewBag.User.Role == 0 || @ViewBag.User.Role == 1) && !@ViewBag.User.Active)
+                    { 
+                        <li><a href="#" style="color: red;">Ваша учетная запись не активирована, обратитесь к администратору</a></li>
                     }
 
                 </ul>

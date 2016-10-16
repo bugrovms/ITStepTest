@@ -17,9 +17,12 @@
                 <hr />
                 <div>                    
                 </div>
+                @if (@ViewBag.User.Role == 2 || @ViewBag.User.Role == 1)
+                    {
                 <div>
                     <a href="/Subject/Create" class="btn-round btn-global">+</a>
                 </div>
+                }
                 <div> 
                     @foreach (var subject in Model)
                      {
@@ -27,6 +30,8 @@
                         <br />               <h4>
                         <b>@subject.Name</b>
                     </h4>
+                    @if (@ViewBag.User.Role == 2 || @ViewBag.User.Role == 1)
+                    {
                     <ul class="list-header-menu small-header-menu">
                         <li>
                             <a href="/Test/Create/@subject.Id?page=Index"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
@@ -41,6 +46,7 @@
                             <a href="/Subject/Delete/@subject.Id"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                         </li>
                     </ul>
+                    }
                 </div>             
                     <ul class="none-list-marker base-items-list">
                         @foreach (var item in subject.Test)
@@ -60,6 +66,8 @@
                                                 <span class="glyphicon glyphicon-info-sign info-element view-comments" aria-hidden="true"></span>
                                                 <a href="#" class="view-comments" data-test="@item.Id">Просмотреть комментарии</a>
                                             </li>
+                                            @if (@ViewBag.User.Role == 2 || @ViewBag.User.Role == 1)
+                                                {
                                             <li>
                                                 <span class="glyphicon glyphicon-pencil  edit-element" aria-hidden="true"></span>
                                                 @Html.ActionLink("Редактировать", "Edit", new { id = item.Id, page = item.Page })
@@ -68,14 +76,18 @@
                                                 <span class="glyphicon glyphicon-edit info-element" aria-hidden="true"></span>
                                                 <a href="/Question/List/@item.Id">Редактировать вопросы</a>
                                             </li>
+                                            }
                                             <li>
                                                 <span class="glyphicon glyphicon-play edit-element" aria-hidden="true"></span>
                                                 <a href="/Question/Index/@item.Id">Пройти тест</a>
                                             </li>
+                                        @if (@ViewBag.User.Role == 2 || @ViewBag.User.Role == 1)
+                                                {
                                             <li>
                                                 <span class="glyphicon glyphicon-remove remove-element" aria-hidden="true"></span>
                                                 @Html.ActionLink("Удалить", "Delete", new { id = item.Id, page = item.Page })
                                             </li>
+                                        }
                                         </ul>
                                     </div>
                                 </div>

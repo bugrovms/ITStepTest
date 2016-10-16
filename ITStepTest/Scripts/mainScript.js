@@ -417,22 +417,29 @@ $(".view-comments").click(function (e) {
             var response = $.parseJSON(data);
             $(".hide-block-for-comments").html(prepareCommentsList(response, test));
             $(".block-for-comments-" + test).show(400);
+            $(".close-view-comments-block").bind('click', function () {
+                $(".block-for-comments-" + test).hide(400);
+            });
         }
     });
 });
 
 function prepareCommentsList(data, test) {
     var result = '<ul class="none-list-marker comments-items-list">';
-    result += '<div class="close-view-comments-block"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></div>';
-    $(".block-for-comments-" + test).bind('click', function () {
-        $(".block-for-comments-" + test).hide(400);
-    });
+    result += '<div class="close-view-comments-block"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></div>';    
     data.forEach(function (item) {
         result +=  convertToComment(item)
     });
-    result += '</ul>'
+    result += '</ul>';
+    result += '<button class="button-add-comment">Добавить комментарий</button>';
     return result;
 }
+
+$(".button-add-comment").click(function (e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    console.log("click add comment");
+});
 
 function convertToComment(comment) {
     var data = new Date(comment.Date);
