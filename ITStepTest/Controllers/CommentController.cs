@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ITStepTest.Models;
+using Newtonsoft.Json;
 
 namespace ITStepTest.Controllers
 {
@@ -94,6 +95,61 @@ namespace ITStepTest.Controllers
             }
 
             return View(comment);
+        }
+
+        //
+        // POST: /Comment/UserCreate
+
+        [HttpPost]
+        public string UserCreate(string text, string test)
+        {
+            try {
+                if (ModelState.IsValid)
+                {
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        int testId = Convert.ToInt32(test);
+                        var userName = User.Identity.Name;
+                        var user = userService.GetByName(userName);
+                        Comment commentNew = new Comment
+                        {
+                            Text = text,
+                            User = user.Id,
+                            Test = testId
+                        };
+                        db.Comments.Add(commentNew);
+                        db.SaveChanges();
+                        var comments = db.Comments.Where(x => x.Test == testId).OrderByDescending(x => x.Date).ToList();
+                        List<CommentInformationModel> commentsList = new List<CommentInformationModel>();
+                        foreach (var comment in comments)
+                        {
+                            var userC = db.Users.Find(comment.User);
+                            var testC = db.Tests.Find(comment.Test);
+                            var subject = db.Subjects.Find(testC.Subject);
+
+                            commentsList.Add(new CommentInformationModel
+                            {
+                                Id = comment.Id,
+                                Text = comment.Text,
+                                User = comment.User,
+                                Role = userC.Role,
+                                UserFullName = userC.LastName + " " + userC.FirstName,
+                                Test = comment.Test,
+                                TestName = testC.Name,
+                                Subject = testC.Subject,
+                                SubjectName = subject.Name,
+                                Date = comment.Date
+                            });
+                        }
+                        return JsonConvert.SerializeObject(commentsList);
+                    }                    
+                }
+                return "error";
+            }
+            catch (Exception ex)
+            {
+                return "error";
+            }            
         }
 
         //

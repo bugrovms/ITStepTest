@@ -998,4 +998,11 @@ img.star-result {
     background: #67bad6;
     border: 0;
     line-height: 36px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
+
+    .button-add-comment:hover {
+        text-decoration: none;
+        color: white;
+    }

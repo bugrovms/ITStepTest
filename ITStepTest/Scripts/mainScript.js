@@ -415,10 +415,24 @@ $(".view-comments").click(function (e) {
         success: function (data) {
             console.log("data", data);
             var response = $.parseJSON(data);
-            $(".hide-block-for-comments").html(prepareCommentsList(response, test));
+            $(".block-for-comments-" + test).html(prepareCommentsList(response, test));
             $(".block-for-comments-" + test).show(400);
             $(".close-view-comments-block").bind('click', function () {
                 $(".block-for-comments-" + test).hide(400);
+            });
+            $(".button-add-comment").bind('click', function (e) {
+                var testId = $(this).attr("data-test");
+                var data = '<div class="form-group">' +
+                '<label for="Text">Текст</label>' +
+                '<textarea class="form-control" id="Text" name="text"></textarea>' +
+                '</div>';
+
+                data += '<div class="form-group hide">' +
+                '<label for="Test">Test</label>' +
+                '<input type="text" class="form-control" id="Test" name="test" value="' + testId + '"/>' +
+                '</div>';
+                $("#createCommentForm").html(data);               
+
             });
         }
     });
@@ -431,15 +445,10 @@ function prepareCommentsList(data, test) {
         result +=  convertToComment(item)
     });
     result += '</ul>';
-    result += '<button class="button-add-comment">Добавить комментарий</button>';
+    result += ' <a href="#" data-test="' + test + '" class="button-add-comment" data-toggle="modal" data-target="#createComment">Добавить комментарий</a>';
+
     return result;
 }
-
-$(".button-add-comment").click(function (e) {
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    console.log("click add comment");
-});
 
 function convertToComment(comment) {
     var data = new Date(comment.Date);
@@ -488,4 +497,25 @@ $("#user-detail-test-results").ready(function () {
         });
     }
    
+});
+
+$("#requestCommentCreateBtn").click(function (e) {    
+    var frm = $("#createCommentForm");
+    var data = frm.serializeFormJSON();
+    $.ajax({
+        url: "/Comment/UserCreate",
+        type: "POST",
+        data: data,
+        success: function (dataRes) {
+            if (dataRes != "error") {
+                var test = data.test;
+                var response = $.parseJSON(dataRes);
+                console.log("data!!!!", response);
+                $(".block-for-comments-" + test).html(prepareCommentsList(response, test));
+                $(".close-view-comments-block").bind('click', function () {
+                    $(".block-for-comments-" + test).hide(400);
+                });
+            }
+        }
+    });
 });
