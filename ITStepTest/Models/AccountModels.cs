@@ -115,8 +115,7 @@ namespace ITStepTest.Models
         [Display(Name = "Фамилия")]
         public string LastName { get; set; }
 
-        [Required]
-        [Display(Name = "Год рождения")]
+         [Display(Name = "Год рождения")]
         public DateTime Date { get; set; }
 
         [Required]

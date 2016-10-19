@@ -65,7 +65,14 @@ namespace ITStepTest.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Groups = db.Groups.ToList();
+            try
+            {
+                ViewBag.Groups = db.Groups.ToList();
+            }
+            catch (Exception) {
+                ViewBag.Groups = null;
+            }
+            
             return View();
         }
 
@@ -87,7 +94,7 @@ namespace ITStepTest.Controllers
                         {
                             FirstName = model.FirstName,
                             LastName = model.LastName,
-                            Date = model.Date,
+                            Date = DateTime.Now,
                             Phone = model.Phone,
                             DateCreate = DateTime.Now,
                             Role = model.Role,
