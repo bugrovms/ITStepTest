@@ -28,7 +28,7 @@ namespace ITStepTest.Models
                 user.Active = active;
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-            }            
+            }         
         }
     }
 }

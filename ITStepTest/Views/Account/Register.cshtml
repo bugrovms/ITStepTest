@@ -22,7 +22,9 @@
 
     List<SelectListItem> groups = new List<SelectListItem>();
     int i = 0;
-    foreach(var group in ViewBag.Groups){
+    if (ViewBag.Groups != null) {
+        foreach (var group in ViewBag.Groups)
+        {
         if (i < 1)
         {
             groups.Add(new SelectListItem
@@ -42,6 +44,8 @@
         
         i++;
     }
+    }
+    
 }
 
 @Html.Partial("_MainMenu")
@@ -85,7 +89,7 @@
                             </div>
                             <div class="form-group hide">
                                 @Html.LabelFor(m => m.Date)
-                                @Html.TextBoxFor(m => m.Date, new {@class = "form-control", @Value = DateTime.Now})
+                                @Html.TextBoxFor(m => m.Date, new { @class = "form-control", @Value = DateTime.Now.AddYears(-20) })
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Phone)*
