@@ -277,7 +277,10 @@ function rightQuestionStart(item) {
         let index = parseInt(item, 10);
         $('.question-' + item).addClass('hide');
         if (item == (maxLengthQuestions - 1)) {
-            $('.question-' + 0).removeClass('hide');
+            $(".test-start-btn-left").addClass('hide');
+            $(".test-start-btn-right").addClass('hide');
+            $(".question-result").removeClass('hide');
+            localStorage.clear();
         } else {
             var newIndex = index + 1;
             $('.question-' + newIndex).removeClass('hide');
@@ -307,10 +310,13 @@ function updateAnswer(item, callback) {
         }
     });
 }
+        
+
 
 function cookiesCheck(item, test) {
     var store = localStorage.getItem(test);
     if (store === undefined || store == null) {
+        setCookies(item, test);
         return "false";
     } else {
         items = store.split(',');
@@ -326,7 +332,7 @@ function cookiesCheck(item, test) {
 function setCookies(item, test) {
     var store = localStorage.getItem(test);
     var items = [];
-    if (store === undefined) {
+    if (store === undefined || store == null) {
         items.push(item);
         localStorage.setItem(test, items.join())
     } else {

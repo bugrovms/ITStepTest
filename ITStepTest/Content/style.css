@@ -882,6 +882,7 @@ ul.variant-item-management-btn {
                     position: fixed;
     right: 10px;
     top: 50%;
+    z-index:9999;
         }
 
         .test-start-question-list > li .test-start-btn-right span {
