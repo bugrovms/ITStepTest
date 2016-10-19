@@ -109,11 +109,14 @@
                                         </button>
                                         <ul class="dropdown-menu icon-menu" aria-labelledby="dLabel">
                                                 @if (@ViewBag.User.Role == 2)
-                                                { 
-                                                    <li>
+                                                {
+                                                    if (item.FirstName != "Super" && item.LastName != "Administrator") { 
+                                                         <li>
                                                     <span class="glyphicon glyphicon-pencil  edit-element" aria-hidden="true"></span>
                                                     @Html.ActionLink("Редактировать", "Edit", new { id = item.Id })
                                                 </li>
+                                                    }
+                                                   
 
                                                 }
                                             
@@ -123,10 +126,14 @@
                                                 </li>
                                             @if (@ViewBag.User.Role == 2)
                                             {
-                                                <li>
+                                                if (item.FirstName != "Super" && item.LastName != "Administrator")
+                                                {
+                                                     <li>
                                                     <span class="glyphicon glyphicon-remove remove-element" aria-hidden="true"></span>
                                                     @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
                                                 </li>
+                                                }
+                                               
                                             }
                                             
                                         </ul>

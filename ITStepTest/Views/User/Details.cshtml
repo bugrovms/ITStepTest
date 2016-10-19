@@ -34,7 +34,10 @@
                 </fieldset>
                 <br />
                 <div>
-                    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) | @Html.ActionLink("Вернуться к списку", "Index")
+                    @if (Model.FirstName != "Super" && Model.LastName != "Administrator") { 
+                    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) 
+                    }
+                     | @Html.ActionLink("Вернуться к списку", "Index")
                 </div>
             </div>
         </div>
