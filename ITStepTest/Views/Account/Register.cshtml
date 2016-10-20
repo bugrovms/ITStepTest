@@ -87,10 +87,6 @@
                                 @Html.LabelFor(m => m.LastName)*
                                 @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
                             </div>
-                            <div class="form-group hide">
-                                @Html.LabelFor(m => m.Date)
-                                @Html.TextBoxFor(m => m.Date, new { @class = "form-control", @Value = DateTime.Now.AddYears(-20) })
-                            </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Phone)*
                                 @Html.TextBoxFor(m => m.Phone, new {@class = "form-control"})
