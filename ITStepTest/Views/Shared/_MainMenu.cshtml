@@ -55,7 +55,7 @@
                     }
                     else if (User.Identity.IsAuthenticated && (@ViewBag.User.Role == 0 || @ViewBag.User.Role == 1) && !@ViewBag.User.Active)
                     { 
-                        <li><a href="#" style="color: red;">Ваша учетная запись не активирована, обратитесь к администратору</a></li>
+                        <li><a href="#" style="color: yellow;">Ваша учетная запись не активирована, обратитесь к администратору</a></li>
                     }
 
                 </ul>
