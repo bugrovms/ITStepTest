@@ -18,6 +18,7 @@
 })(jQuery);
 
 $(document).ready(function () {
+
     $('#change-password-block').hide();
     $("#btn-change-password").click(function () {
         if (!$('#change-password-block').is(":visible")) {

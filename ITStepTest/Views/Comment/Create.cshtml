@@ -70,7 +70,7 @@
                             @Html.LabelFor(model => model.Test, "Тест")
                         </div>
                         <div class="editor-field">
-                            @Html.DropDownListFor(m => m.Test, tests, new { @class = "form-control" })
+                            @Html.DropDownListFor(m => m.Test, tests, new { @class = "form-control", @required = "required" })
                             @Html.ValidationMessageFor(model => model.Test)
                         </div>
 

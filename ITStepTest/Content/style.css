@@ -1007,3 +1007,7 @@ img.star-result {
         text-decoration: none;
         color: white;
     }
+
+    span.field-validation-error {
+    color: red;
+}

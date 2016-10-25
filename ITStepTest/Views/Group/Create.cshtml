@@ -27,7 +27,7 @@
                 <fieldset>
                     <div class="form-group">
                         @Html.LabelFor(m => m.Name, "Название")
-                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @required  = "required"})
                         @Html.ValidationMessageFor(model => model.Name)
                     </div>
                     <p>
