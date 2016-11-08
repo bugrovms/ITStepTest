@@ -300,6 +300,21 @@ function updateAnswer(item, callback) {
         requestData.question = datQuestion;
         requestData.variantId = data.variantId;
         requestData.update = cookiesCheck(item, dataTest);
+    } else if (typeof data == 'object') {
+        requestData.test = dataTest;
+        requestData.question = datQuestion;
+        requestData.variantId = data.variantId;
+        
+        var i = 0;
+        for (var varQuestion in data) {
+            if (i == 0) {
+                requestData.variantId = varQuestion
+            } else {
+                break;
+            }
+            i++;
+        }
+        requestData.update = cookiesCheck(item, dataTest);
     }
 
     $.ajax({

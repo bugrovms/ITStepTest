@@ -25,7 +25,7 @@ namespace ITStepTest.Controllers
                 var userName = User.Identity.Name;
                 user = userService.GetByName(userName);                
             }
-            Result result = db.Results.Where(x => x.Test == test).FirstOrDefault();
+            Result result = db.Results.Where(x => x.Test == test && x.User == user.Id).FirstOrDefault();
             if (result == null)
             {
                 Result newResult = new Result()
