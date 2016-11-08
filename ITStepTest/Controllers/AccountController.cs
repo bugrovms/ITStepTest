@@ -110,6 +110,7 @@ namespace ITStepTest.Controllers
                     ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
                 }
             }
+            ViewBag.Groups = db.Groups.ToList();
 
             // Появление этого сообщения означает наличие ошибки; повторное отображение формы
             return View(model);
