@@ -336,10 +336,16 @@ function cookiesCheck(item, test) {
         return "false";
     } else {
         items = store.split(',');
+        var info = true;
         for (var i=0; i<items.length; i++) {
-            if (item[i] == item) {
-                return "true";
+            if (items[i] == item) {
+                info = false;
             }
+        }
+        if (info) {
+            setCookies(item, test);
+            return "true";
+
         }
         return "false";
     }   
@@ -355,7 +361,8 @@ function setCookies(item, test) {
         items = store.split(',');
         var info = false;
         for (var i = 0; i < items.length; i++) {
-            if (item[i] == item) {
+            if (items[i] == item) {
+
                 info = true;
                 break;
             }
@@ -366,6 +373,13 @@ function setCookies(item, test) {
         localStorage.setItem(test, items.join())
     }
 }
+
+$(".close-tests-btn").click(function (event) {
+    event.stopPropagation();
+    event.preventDefault();
+    localStorage.clear();
+    window.location.href = "/Test";
+});
 
 $("#btn-change-password").ready(function () {
     $.ajax({

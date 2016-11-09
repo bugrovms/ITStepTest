@@ -2,7 +2,6 @@
     <div class="form-group">
         <label for="text">Текст</label>
         <input type="text" class="form-control" id="text" name="text" required value="@ViewBag.Variant.Text">
-        @Html.ValidationMessageFor(text)
     </div>
     @if (ViewBag.Variant.True) { 
         <div class="checkbox">

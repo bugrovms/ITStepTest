@@ -54,19 +54,19 @@ namespace ITStepTest.Controllers
                     if (variantsTrue > 0)
                     {
                         decimal data = 12 / testQuestions;
-                        result.Balls += Convert.ToInt32(Math.Round(data, 2) * 100);
+                        result.Balls = Convert.ToInt32(Math.Round(data, 2) * 100);
                     }
                     else
                     {
-                        result.Balls += 0;
+                        result.Balls = 0;
                     }
                 }
                 else {
-                    if (variantsTrue == 0)
+                    if (variantsTrue > 0)
                     {
                         decimal data = 12 / testQuestions;
-                        result.Balls -= Convert.ToInt32(Math.Round(data, 2) * 100);
-                    }                   
+                        result.Balls += Convert.ToInt32(Math.Round(data, 2) * 100);
+                    }                                    
                 }
                 
                 db.Entry(result).State = EntityState.Modified;
